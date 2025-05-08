@@ -1,0 +1,89 @@
+    html, body {
+        height: 100%;
+        margin: 0;
+      }
+      /* 🔹 Match dropdown style to main page */
+.form-select.form-select-sm {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+  box-shadow: none;
+  padding-left: 0;
+  font-weight: 500;
+  color: #324c5d;
+  transition: border-color 0.2s ease;
+}
+
+.form-select.form-select-sm:focus {
+  border-color: #406177;
+  box-shadow: none;
+  background-color: transparent;
+  outline: none;
+}
+
+      .nav-pill {
+        background-color: #f0f4f8;
+        color: #324c5d;
+        border: none;
+        border-radius: 999px;
+        padding: 6px 14px;
+        transition: background-color 0.2s ease;
+      }
+      .nav-pill:hover {
+        background-color: #e1e9f0;
+      }
+      .active-pill {
+        background-color: #406177;
+        color: white;
+      }
+.navbar-custom {
+  background-color: #406177;
+}
+
+.navbar-custom .nav-link,
+.navbar-custom .navbar-brand,
+.navbar-custom .dropdown-toggle {
+  color: white !important;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .dropdown-toggle:hover {
+  color: #dce8f2 !important; /* optional hover color */
+}
+
+.navbar-custom .dropdown-menu {
+  background-color: #ffffff;
+}
+
+.navbar-custom .dropdown-item {
+  color: #324c5d;
+}
+.navbar-custom .dropdown-item:hover {
+  background-color: #f0f4f8;
+}
+
+#sidebar {
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+}
+
+.sidebar-bottom-banner {
+  border: none;
+  background-color: #406177;
+  color: white;
+}
+
+
+
+
+
+      .navbar-custom {
+        background-color: #406177;
+        color: white;
+      }
+
+      main {
+        padding-top: 2rem;
+      }

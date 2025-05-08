@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <meta name="description" content="" />
+      <meta name="author" content="" />
+      <title>Command Center</title>
+      <!-- Favicon-->
+      <link rel="icon" type="image/x-icon" href="assets\favicon.ico" />
+      <!-- Core theme CSS (includes Bootstrap)-->
+      <link href="css/styles.css" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+      <style>
+        #sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar-bottom-banner {
+  margin-top: auto;
+}
+
+         .navbar-custom {
+         background: linear-gradient(to right, #406177, #406177);
+         }
+         .navbar-brand img {
+         height: 28px;
+         }
+         .nav-link, .navbar-text {
+         color: white !important;
+         }
+      </style>
+      <style>
+        .pill-badge {
+          min-width: 48px;
+          text-align: center;
+          padding: 2px 8px;
+          border-radius: 999px;
+          font-size: 0.75rem;
+          display: inline-block;
+        }
+        .pill-muted {
+          background-color: #eaf1f8; /* Alice Blue-like */
+          color: #406177;
+        }
+        .pill-highlight {
+          background-color: #d1e7dd; /* Light success */
+          color: #155724;
+        }
+        .pill-warning {
+          background-color: #fff3cd;
+          color: #856404;
+        }
+        .pill-primary {
+          background-color: #d0e2f2;
+          color: #2a506f;
+        }
+
+        /* Optional styling to enhance the nav */
+.arrow-divider {
+  color: #6c757d;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.active-tab {
+  background-color: #406177;
+  color: #fff;
+  border-color: #406177;
+}
+
+.disabled-tab {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.nav-pill {
+  background-color: #f0f4f8;
+  color: #324c5d;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 14px;
+  transition: background-color 0.2s ease;
+}
+
+.nav-pill:hover:not(:disabled) {
+  background-color: #e1e9f0;
+  cursor: pointer;
+}
+.form-select.form-select-sm {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+  box-shadow: none;
+  padding-left: 0;
+  font-weight: 500;
+  color: #324c5d;
+  transition: border-color 0.2s ease;
+}
+
+.form-select.form-select-sm:focus {
+  border-color: #406177;
+  box-shadow: none;
+  background-color: transparent;
+  outline: none;
+}
+
+
+.active-pill {
+  background-color: #406177;
+  color: white;
+}
+
+.disabled-pill {
+  opacity: 0.5;
+  pointer-events: none;
+}
+#sidebar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding-bottom: 1rem;
+}
+
+.sidebar-bottom-banner {
+  position: absolute;
+  bottom: 3rem;
+  left: 1rem;
+  right: 1rem;
+  background-color: #e3f2fd; /* New subtle blue background */
+  border-left: 4px solid #406177;
+  color: #324c5d;
+}
+
+
+      </style>
+   </head>
+   <body >
+    
+      <!-- Responsive navbar -->
+      <nav class="navbar navbar-expand-lg navbar-custom px-5">
+         <a class="navbar-brand d-flex align-items-center" href="#">
+         <img src="assets\aline-primary-logo-white-RGB.png" alt="Aline Logo" id="logoSrc">
+         </a>
+         <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+               <li class="nav-item">
+                  <a class="nav-link" href="#">Communities</a>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Applications</a>
+                  <ul class="dropdown-menu">
+                     <li><a class="dropdown-item" href="#">App 1</a></li>
+                     <li><a class="dropdown-item" href="#">App 2</a></li>
+                  </ul>
+               </li>
+            </ul>
+            <div class="d-flex align-items-center">
+               <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User Icon" width="24" height="24" class="rounded-circle">
+            </div>
+         </div>
+      </nav>
+      <div class="container-fluid">
+        <div class="row">
+          
+          <!-- SIDEBAR -->
+          <aside class="col-md-3 col-lg-2 bg-light border-end pt-4 position-sticky" id="sidebar" style="top: 0; height: 100vh;">
+
+            <div class="px-3">
+              <h6 class="fw-bold text-muted mb-3">Filters</h6>
+      
+              <!-- Community Selector -->
+              <div class="mb-3">
+                <label for="communitySelect" class="form-label small text-muted">Community</label>
+                <select class="form-select form-select-sm" id="communitySelect">
+                  <option selected>All Communities</option>
+                  <option>RiverView</option>
+                  <option>Sunrise East</option>
+                  <option>Brookfield West</option>
+                </select>
+              </div>
+      
+              <!-- Region Selector -->
+              <div class="mb-3">
+                <label for="regionSelect" class="form-label small text-muted">Region</label>
+                <select class="form-select form-select-sm" id="regionSelect">
+                  <option selected>All Regions</option>
+                  <option>Midwest</option>
+                  <option>South Atlantic</option>
+                </select>
+              </div>
+      
+              <!-- Care Type -->
+              <div class="mb-3">
+                <label for="careSelect" class="form-label small text-muted">Care Type</label>
+                <select class="form-select form-select-sm" id="careSelect">
+                  <option selected>All Types</option>
+                  <option>IL</option>
+                  <option>AL</option>
+                  <option>MC</option>
+                </select>
+              </div>
+              <div class="alert alert-info small sidebar-bottom-banner mt-4">
+                Want to see care and QA metrics here? <strong>Enable Aline Care</strong> to unlock full lifecycle insights.
+              </div>
+            </div>
+          </aside>
+      
+          <!-- MAIN CONTENT -->
+          <main class="col-md-12 col-lg-10 pt-4">
+              
+    <div class="px-4">
+
+     <!-- 🚀 Here’s your metrics dashboard -->
+     <div class="col container-fluid py-2 px-1">       
+        <h1 class="mb-4">Aline Performance Center</h1>     
+        <p class="text-muted mb-4">
+            A centralized view of conversion and revenue performance — with clear paths to expand into care, quality, and financial health as additional data becomes available.
+          </p>
+          
+        <!-- 🔁 Lifecycle Sub-Nav (within main content area) -->
+<!-- 🔄 Clean Lifecycle Nav -->
+<div class="d-flex flex-wrap gap-2 mb-4">
+    <button class="btn btn-sm fw-semibold nav-pill">Marketing & Outreach</button>
+    <button class="btn btn-sm fw-semibold nav-pill active-pill">Lead Conversion</button>
+    <button class="btn btn-sm fw-semibold nav-pill active-pill">Revenue and Occupancy</button>
+    <button class="btn btn-sm fw-semibold nav-pill">Financials</button>
+    <button class="btn btn-sm fw-semibold nav-pill disabled-pill" disabled data-bs-toggle="popover"
+  title="Coming Soon"
+  data-bs-content="This section will unlock once Aline Care is enabled for your organization.">
+  Care Delivery
+</button>
+
+    <button class="btn btn-sm fw-semibold nav-pill disabled-pill" disabled>Risk & Acuity</button>
+    <button class="btn btn-sm fw-semibold nav-pill disabled-pill" disabled>Quality</button>
+    <button class="btn btn-sm fw-semibold nav-pill">Resident Outcomes</button>
+  </div>
+  
+  
+
+         <div class="container-fluid pt-5 pb-2">
+            <h2 class="mb-3">Revenue Operations</h2>
+            <div class="row g-4">
+
+               <!-- Current Occupancy Rate -->
+               <div class="col-md-6 col-lg-3">
+                <div class="card shadow h-100 border-0">
+                  <div class="card-body d-flex flex-column">
+              
+                    <!-- Subheading -->
+                    <h6 class="text-muted fw-semibold mb-1">Current Occupancy Rate</h6>
+              
+                    <!-- Main stat -->
+                    <div class="d-flex align-items-baseline mb-1">
+                      <h1 class="display-5 fw-semibold mb-0 me-2" style="color: #324c5d">87%</h1>
+                    </div>
+              
+                    <!-- Caption -->
+                    <div class="text-success fw-medium small mb-3">
+                      <i class="bi bi-arrow-up-short"></i> 2% from last month
+                    </div>
+              
+                    <!-- Sub-stat list -->
+                    <div class="bg-light rounded p-2">
+                      <ul class="list-unstyled mb-0 small">
+                        <li class="d-flex justify-content-between align-items-center py-2">
+                          <span><i class="bi bi-house-door-fill text-secondary me-2"></i> Assisted Living</span>
+                          <span class="fw-semibold text-dark d-flex align-items-center">
+                            89%
+                            <span class="ms-2 d-inline-flex align-items-center justify-content-center rounded-circle bg-success text-white" style="width: 24px; height: 24px;">
+                              <i class="bi bi-chevron-up"></i>
+                            </span>
+                          </span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-2 border-top">
+                          <span><i class="bi bi-person-check-fill text-secondary me-2"></i> Independent Living</span>
+                          <span class="fw-semibold text-dark d-flex align-items-center">
+                            83%
+                            <span class="ms-2 d-inline-flex align-items-center justify-content-center rounded-circle bg-danger text-white" style="width: 24px; height: 24px;">
+                              <i class="bi bi-chevron-down"></i>
+                            </span>
+                          </span>
+                        </li>
+                        <li class="d-flex justify-content-between align-items-center py-2 border-top">
+                          <span><i class="bi bi-heart-pulse-fill text-secondary me-2"></i> Memory Care</span>
+                          <span class="fw-semibold text-dark d-flex align-items-center">
+                            88%
+                            <span class="ms-2 d-inline-flex align-items-center justify-content-center rounded-circle bg-success text-white" style="width: 24px; height: 24px;">
+                              <i class="bi bi-chevron-up"></i>
+                            </span>
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+              
+                    <!-- Footer text -->
+                    <p class="text-muted small mt-3 mb-0">
+                      Powered by MatrixCare.
+                    </p>
+                    <p class="small mb-0 text-dark">
+                      Revenue breakdown by rate, discount, and care tier available in 
+                      <span class="text-primary fw-semibold">Aline Leasing & Billing</span>.
+                    </p>
+              
+                  </div>
+                </div>
+              </div>
+              
+              
+               <!-- Projected Move-ins & Move-outs -->
+               <div class="col-md-6 col-lg-3">
+                  <div class="card shadow h-100 border-0">
+                     <div class="card-body d-flex flex-column">
+                        <!-- Subheading -->
+                        <h6 class="text-muted fw-semibold mb-1">Net Occupancy Impact</h6>
+                        <!-- Main stat -->
+                        <div class="d-flex align-items-baseline mb-1">
+                           <h1 class="display-5 fw-semibold mb-0 me-2 text-success">+12</h1>
+                        </div>
+                        <!-- Caption -->
+                        <div class="text-muted fw-medium small mb-3">
+                           Projected over next 30 days
+                        </div>
+                        <!-- Bar indicator -->
+                        <div class="progress mb-4" style="height: 12px; background-color: #f0f0f0;">
+                           <div class="progress-bar bg-danger" style="width: 39%"></div>
+                           <div class="progress-bar bg-success" style="width: 61%"></div>
+                        </div>
+                        <!-- Combined labels and values -->
+                        <ul class="list-unstyled mb-0 small">
+                           <li class="d-flex justify-content-between align-items-center py-2 fs-6">
+                              <span class="d-flex align-items-center text-danger">
+                              <i class="bi bi-arrow-right-circle-fill me-2"></i> Move-outs
+                              </span>
+                              <span class="fw-semibold text-danger fs-6">22</span>
+                           </li>
+                           <li class="d-flex justify-content-between align-items-center py-2 border-top fs-6">
+                              <span class="d-flex align-items-center text-success">
+                              <i class="bi bi-arrow-left-circle-fill me-2"></i> Move-ins
+                              </span>
+                              <span class="fw-semibold text-success">34</span>
+                           </li>
+                        </ul>
+                        <!-- Footer text -->
+                     </div>
+                  </div>
+               </div>
+               <!-- Monthly Recurring Revenue -->
+               <div class="col-md-6 col-lg-3">
+                  <div class="card shadow h-100 border-0">
+                     <div class="card-body d-flex flex-column">
+                        <!-- Subheading -->
+                        <h6 class="text-muted fw-semibold mb-1">Monthly Recurring Revenue</h6>
+                        <!-- Main Stat -->
+                        <div class="d-flex align-items-baseline mb-1">
+                           <h1 class="display-5 fw-semibold mb-0 me-2" style="color: #324c5d">$420K</h1>
+                        </div>
+                        <div class="text-success fw-medium small mb-3">
+                           <i class="bi bi-arrow-up-right me-1"></i> +4.2% from previous month
+                        </div>
+                        <!-- Sparkline -->
+                        <!-- MRR Sparkline -->
+                        <div class="bg-light rounded px-2 pt-2 pb-3 mb-3 position-relative" style="height: 140px;">
+                           <canvas id="mrrSparkline" class="w-100 h-100"></canvas>
+                           <span class="position-absolute bottom-0 start-0 text-muted small ms-2 mb-2">
+                           MRR grew 16.7% with slight fluctuation
+                           </span>
+                        </div>
+                        <!-- Revenue Metrics Summary -->
+                     </div>
+                  </div>
+               </div>
+               <!-- Average Rent Concession -->
+               <div class="col-md-6 col-lg-3">
+                  <div class="card shadow h-100 border-0">
+                     <div class="card-body d-flex flex-column">
+                        <!-- Subheading -->
+                        <h6 class="text-muted fw-semibold mb-1">Rent Concessions – Last 30 Days</h6>
+                        <!-- Main Value -->
+                        <div class="d-flex align-items-baseline mb-1">
+                           <h1 class="display-5 fw-semibold mb-0 me-2 text-danger">$42,750</h1>
+                           <span class="badge bg-danger bg-opacity-25 text-danger">
+                           <i class="bi bi-arrow-up"></i> +112%
+                           </span>
+                        </div>
+                        <!-- Caption -->
+                        <div class="text-muted small mb-3">+ $4.5K vs last month</div>
+                        <!-- Breakdown List (Styled like others) -->
+                        <div class="bg-light rounded p-2 mb-2">
+                           <ul class="list-unstyled small mb-0">
+                              <li class="d-flex justify-content-between align-items-center py-2">
+                                 <span><i class="bi bi-cash-stack text-secondary me-2"></i> Total Concessions</span>
+                                 <span class="fw-semibold text-dark">$542,750</span>
+                              </li>
+                              <li class="d-flex justify-content-between align-items-center py-2 border-top">
+                                 <span><i class="bi bi-building text-secondary me-2"></i> Units with Concessions</span>
+                                 <span class="fw-semibold text-dark">18 <span class="text-muted">(34%)</span></span>
+                              </li>
+                              <li class="d-flex justify-content-between align-items-center py-2 border-top">
+                                 <span><i class="bi bi-percent text-secondary me-2"></i> Avg Concession/Unit</span>
+                                 <span class="fw-semibold text-dark">$2,375</span>
+                              </li>
+                           </ul>
+                        </div>
+                        <!-- Footer (optional) -->
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="container-fluid py-5">
+            <!-- Section Title and Subtitle -->
+            <h2 class="mb-3">Sales Funnel</h2>
+            <p class="text-muted mb-4">Pipeline health and marketing effectiveness across touchpoints.</p>
+          
+            <!-- Row of Cards -->
+            <div class="row g-4">
+              
+              <!-- 🟦 Standard KPI Card 1 -->
+
+              <!-- Leads by Source vs. Conversion Rate -->
+              <div class="col-md-6 col-lg-3">
+                <div class="card shadow h-100 border-0">
+                  <div class="card-body d-flex flex-column">
+              
+                    <h6 class="text-muted fw-semibold mb-1">Leads by Source vs. Conversion Rate</h6>
+              
+                    <div class="d-flex align-items-baseline mb-1">
+                      <h1 class="display-5 fw-semibold mb-0 me-2" style="color: #324c5d">325</h1>
+                      <span class="badge bg-success bg-opacity-25 text-success">
+                        <i class="bi bi-arrow-up"></i> +8%
+                      </span>
+                    </div>
+              
+                    <div class="text-muted small mb-3">Top sources by volume and conversion</div>
+              
+                    <!-- Styled Pill Grid -->
+                    <div class="d-flex flex-column gap-2 mb-3">
+              
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                          <i class="bi bi-globe text-muted me-2 small"></i>
+                          <span class="fw-medium">Web</span>
+                        </div>
+                        <div class="d-flex gap-2">
+                          <span class="pill-badge pill-muted">120</span>
+                          <span class="pill-badge pill-warning">4%</span>
+                        </div>
+                      </div>
+              
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                          <i class="bi bi-person-lines-fill text-muted me-2 small"></i>
+                          <span class="fw-medium">Referrals</span>
+                        </div>
+                        <div class="d-flex gap-2">
+                          <span class="pill-badge pill-highlight">85</span>
+                          <span class="pill-badge pill-highlight">12%</span>
+                        </div>
+                      </div>
+              
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                          <i class="bi bi-envelope-paper-fill text-muted me-2 small"></i>
+                          <span class="fw-medium">Direct Mail</span>
+                        </div>
+                        <div class="d-flex gap-2">
+                          <span class="pill-badge pill-muted">65</span>
+                          <span class="pill-badge pill-warning">5%</span>
+                        </div>
+                      </div>
+              
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                          <i class="bi bi-calendar-event-fill text-muted me-2 small"></i>
+                          <span class="fw-medium">Events</span>
+                        </div>
+                        <div class="d-flex gap-2">
+                          <span class="pill-badge pill-primary">55</span>
+                          <span class="pill-badge pill-primary">6%</span>
+                        </div>
+                      </div>
+              
+                    </div>
+              
+                    <p class="text-muted small mt-auto mb-0">
+                      <i class="bi bi-lightbulb-fill me-1 text-warning"></i>
+                      Referrals performed strongest (12% from 85 leads).
+                    </p>
+              
+                  </div>
+                </div>
+              </div>
+  
+              
+              <!-- 🟦 Standard KPI Card 3 -->
+           <!-- Time from Lead to Move-In -->
+<div class="col-md-6 col-lg-3">
+    <div class="card shadow h-100 border-0">
+      <div class="card-body d-flex flex-column">
+        
+        <!-- Subheading -->
+        <h6 class="text-muted fw-semibold mb-1">Time from Lead to Move-In</h6>
+        
+        <!-- Main Stat -->
+        <div class="d-flex align-items-baseline mb-1">
+          <h1 class="display-5 fw-semibold mb-0 me-2" style="color: #324c5d">18 days</h1>
+          <span class="badge bg-danger bg-opacity-25 text-danger">
+            <i class="bi bi-arrow-up"></i> +3 days
+          </span>
+        </div>
+  
+        <!-- Caption -->
+        <li class="d-flex justify-content-between align-items-center py-2 small text-muted">
+            <span><i class="bi bi-calendar-check text-secondary me-2"></i> Within 30 Days</span>
+            <span class="fw-semibold text-dark">72%</span>
+          </li>
+        
+        <!-- Histogram Placeholder -->
+        <div class="bg-light rounded px-2 pt-2 pb-3 mb-3 position-relative" style="height: 140px;">
+          <canvas id="moveInTimeChart" class="w-100 h-100"></canvas>
+        
+        </div>
+  
+  
+        <!-- Footer -->
+        
+      </div>
+    </div>
+  </div>
+  
+              
+              <!-- 🟦 Standard KPI Card 4 -->
+               <!-- Tour-to-Move-In Conversion -->
+<div class="col-md-6 col-lg-3">
+    <div class="card shadow h-100 border-0">
+      <div class="card-body d-flex flex-column">
+        
+        <!-- Subheading -->
+        <h6 class="text-muted fw-semibold mb-1">Tour-to-Move-In Conversion</h6>
+        
+        <!-- Main Stat -->
+        <div class="d-flex align-items-baseline mb-1">
+          <h1 class="display-5 fw-semibold mb-0 me-2" style="color: #324c5d">21%</h1>
+          <span class="badge bg-success bg-opacity-25 text-success">
+            <i class="bi bi-arrow-up"></i> +3 pts
+          </span>
+        </div>
+  
+        <!-- Caption -->
+        <div class="text-muted small mb-3">Conversion performance above industry benchmark</div>
+
+  
+        <!-- Detail List -->
+        <div class="bg-light rounded p-2 mb-2">
+          <ul class="list-unstyled small mb-0">
+            <li class="d-flex justify-content-between align-items-center py-2">
+              <span><i class="bi bi-building-fill-check text-secondary me-2"></i> Current Period</span>
+              <span class="fw-semibold text-dark">21%</span>
+            </li>
+            <li class="d-flex justify-content-between align-items-center py-2 border-top">
+              <span><i class="bi bi-bar-chart-line-fill text-secondary me-2"></i> Industry Avg</span>
+              <span class="fw-semibold text-dark">18%</span>
+            </li>
+          </ul>
+        </div>
+  
+        <!-- Footer -->
+   
+      </div>
+    </div>
+  </div>
+
+  <!-- Disqualified or Lost Rate -->
+<div class="col-md-6 col-lg-3">
+    <div class="card shadow h-100 border-0">
+      <div class="card-body d-flex flex-column">
+  
+        <!-- Subheading -->
+        <h6 class="text-muted fw-semibold mb-1">Disqualified or Lost Rate</h6>
+  
+        <!-- Main Stat -->
+        <div class="d-flex align-items-baseline mb-1">
+          <h1 class="display-5 fw-semibold mb-0 me-2 text-danger">26%</h1>
+          <span class="badge bg-danger bg-opacity-25 text-danger">
+            <i class="bi bi-arrow-up"></i> +5%
+          </span>
+        </div>
+  
+        <!-- Caption -->
+        <div class="text-muted small mb-3">↑ 5% vs last month</div>
+  
+        <!-- Bar Chart Placeholder -->
+        <div class="bg-light rounded px-2 pt-2 pb-3 mb-3 position-relative" style="height: 140px;">
+          <canvas id="lostRateChart" class="w-100 h-100"></canvas>
+
+        </div>
+  
+
+
+  
+      </div>
+    </div>
+  </div>
+  
+
+      <div class="row g-4">
+        <!-- ✨ KPI cards (sales funnel row) remain untouched here -->
+      </div>
+    </div>
+    </main>
+      
+        </div>
+      </div>
+      
+      <!-- LIFECYCLE NAV -->
+
+
+  
+ 
+  
+          
+            </div>
+          </div>
+          
+        </div>
+
+      <!-- Bootstrap core JS -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+          var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl)
+          })
+        });
+      </script>
+      
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+      <script>
+         const ctx = document.getElementById('mrrSparkline').getContext('2d');
+         
+         const mrrValues = [360000, 374000, 389000, 401000, 398000, 420000]; // Real MRR in dollars
+         const fillGradient = ctx.createLinearGradient(0, 0, 0, 140);
+         fillGradient.addColorStop(0, 'rgba(0, 97, 255, 0.15)');
+         fillGradient.addColorStop(1, 'rgba(0, 97, 255, 0)');
+         
+         const lineGradient = ctx.createLinearGradient(0, 0, ctx.canvas.width, 0);
+         lineGradient.addColorStop(0, '#6d96b0');
+         lineGradient.addColorStop(1, '#466a82');
+         
+         new Chart(ctx, {
+           type: 'line',
+           data: {
+             labels: ['Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May'],
+             datasets: [{
+               data: mrrValues,
+               borderColor: lineGradient,
+               backgroundColor: fillGradient,
+               borderWidth: 2.5,
+               tension: 0.4,
+               pointRadius: 3,
+               pointBackgroundColor: '#0061ff',
+               pointHoverRadius: 0,
+               fill: true
+             }]
+           },
+           options: {
+             responsive: true,
+             maintainAspectRatio: false,
+             animation: {
+               duration: 1000,
+               easing: 'easeOutCubic'
+             },
+             plugins: {
+               legend: { display: false },
+               tooltip: {
+                 backgroundColor: '#fff',
+                 titleColor: '#333',
+                 bodyColor: '#333',
+                 borderColor: '#007bff',
+                 borderWidth: 1,
+                 padding: 10,
+                 callbacks: {
+                   label: ctx => `$${(ctx.raw / 1000).toFixed(0)}K`
+                 }
+               },
+               datalabels: {
+                 display: ctx => {
+                   const i = ctx.dataIndex;
+                   return i === 0 || i === mrrValues.length - 2 || i === mrrValues.length - 1;
+                 },
+                 align: ctx => ctx.dataIndex === mrrValues.length - 1 ? 'bottom' : 'top',
+                 anchor: 'center',
+                 offset: 6,
+                 formatter: val => `$${(val / 1000).toFixed(0)}K`,
+                 font: { weight: 'bold', size: 10 },
+                 color: '#324c5d'
+               }
+             },
+             scales: {
+               x: { display: false },
+               y: {
+                 display: false,
+                 min: 350000,
+                 max: 430000
+               }
+             }
+           },
+           plugins: [ChartDataLabels]
+         });
+      </script>
+      <script>
+        const ctxLeads = document.getElementById('leadsBySourceChart').getContext('2d');
+      
+        new Chart(ctxLeads, {
+          type: 'bar',
+          data: {
+            labels: ['Web', 'Referrals', 'Direct Mail', 'Events'],
+            datasets: [{
+              label: 'Conversion Rate',
+              data: [4, 12, 5, 6],
+              backgroundColor: ['#b4c7d9', '#406177', '#a3b7c5', '#7d99ab'],
+              borderRadius: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: ctx => `${ctx.dataset.label}: ${ctx.raw}%`
+                }
+              }
+            },
+            scales: {
+              x: {
+                ticks: { font: { size: 10 } },
+                grid: { display: false }
+              },
+              y: {
+                display: false,
+                min: 0,
+                max: 15
+              }
+            }
+          }
+        });
+      </script>
+      <script>
+        const ctxMoveInTime = document.getElementById('moveInTimeChart').getContext('2d');
+
+new Chart(ctxMoveInTime, {
+  type: 'bar',
+  data: {
+    labels: ['0-10d', '11-20d', '21-30d', '31-40d', '41-50d'],
+    datasets: [{
+      label: 'Move-ins',
+      data: [30, 40, 25, 10, 5],
+      backgroundColor: '#406177',
+      borderRadius: 4
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => `${ctx.raw}% in range`
+        }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { font: { size: 10 } },
+        grid: { display: false }
+      },
+      y: {
+        display: false,
+        min: 0,
+        max: 50
+      }
+    }
+  }
+});
+
+      </script>
+      <script>const ctxTourConversion = document.getElementById('tourConversionChart').getContext('2d');
+
+        new Chart(ctxTourConversion, {
+          type: 'line',
+          data: {
+            labels: ['Mar', 'Apr', 'May'],
+            datasets: [{
+              data: [17, 18, 21],
+              borderColor: '#406177',
+              backgroundColor: 'rgba(64, 97, 119, 0.1)',
+              borderWidth: 2.5,
+              tension: 0.4,
+              pointRadius: 3,
+              pointBackgroundColor: '#406177',
+              fill: true
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: ctx => `${ctx.raw}% conversion`
+                }
+              }
+            },
+            scales: {
+              x: { display: false },
+              y: { display: false, min: 10, max: 25 }
+            }
+          }
+        });
+        </script>
+        <script>const ctxLostRate = document.getElementById('lostRateChart').getContext('2d');
+
+            new Chart(ctxLostRate, {
+              type: 'bar',
+              data: {
+                labels: ['Chose Competitor', 'Not Qualified', 'No Response'],
+                datasets: [{
+                  label: 'Lost Leads',
+                  data: [41, 33, 26],
+                  backgroundColor: ['#a84242', '#c36767', '#e08b8b'],
+                  borderRadius: 4
+                }]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: { display: false },
+                  tooltip: {
+                    callbacks: {
+                      label: ctx => `${ctx.label}: ${ctx.raw}%`
+                    }
+                  }
+                },
+                scales: {
+                  x: {
+                    ticks: { font: { size: 10 } },
+                    grid: { display: false }
+                  },
+                  y: {
+                    display: false,
+                    min: 0,
+                    max: 50
+                  }
+                }
+              }
+            });
+            </script>
+            <script>// Activate all popovers on the page
+                document.addEventListener('DOMContentLoaded', function () {
+                  const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+                  popoverTriggerList.forEach(el => new bootstrap.Popover(el))
+                });
+                </script>
+   </body>
+</html>
