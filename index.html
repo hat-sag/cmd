@@ -16,12 +16,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
+} 
 
 .sidebar-bottom-banner {
   margin-top: auto;
 }
-
+ 
          .navbar-custom {
          background: linear-gradient(to right, #406177, #406177);
          }
@@ -247,69 +247,80 @@
             <div class="row g-4">
 
                <!-- Current Occupancy Rate -->
-               <div class="col-md-6 col-lg-3">
-                <div class="card shadow h-100 border-0">
-                  <div class="card-body d-flex flex-column">
-              
-                    <!-- Subheading -->
-                    <h6 class="text-muted fw-semibold mb-1">Current Occupancy Rate</h6>
-              
-                    <!-- Main stat -->
-                    <div class="d-flex align-items-baseline mb-1">
-                      <h1 class="display-5 fw-semibold mb-0 me-2" style="color: #324c5d">87%</h1>
-                    </div>
-              
-                    <!-- Caption -->
-                    <div class="text-success fw-medium small mb-3">
-                      <i class="bi bi-arrow-up-short"></i> 2% from last month
-                    </div>
-              
-                    <!-- Sub-stat list -->
-                    <div class="bg-light rounded p-2">
-                      <ul class="list-unstyled mb-0 small">
-                        <li class="d-flex justify-content-between align-items-center py-2">
-                          <span><i class="bi bi-house-door-fill text-secondary me-2"></i> Assisted Living</span>
-                          <span class="fw-semibold text-dark d-flex align-items-center">
-                            89%
-                            <span class="ms-2 d-inline-flex align-items-center justify-content-center rounded-circle bg-success text-white" style="width: 24px; height: 24px;">
-                              <i class="bi bi-chevron-up"></i>
-                            </span>
-                          </span>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center py-2 border-top">
-                          <span><i class="bi bi-person-check-fill text-secondary me-2"></i> Independent Living</span>
-                          <span class="fw-semibold text-dark d-flex align-items-center">
-                            83%
-                            <span class="ms-2 d-inline-flex align-items-center justify-content-center rounded-circle bg-danger text-white" style="width: 24px; height: 24px;">
-                              <i class="bi bi-chevron-down"></i>
-                            </span>
-                          </span>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center py-2 border-top">
-                          <span><i class="bi bi-heart-pulse-fill text-secondary me-2"></i> Memory Care</span>
-                          <span class="fw-semibold text-dark d-flex align-items-center">
-                            88%
-                            <span class="ms-2 d-inline-flex align-items-center justify-content-center rounded-circle bg-success text-white" style="width: 24px; height: 24px;">
-                              <i class="bi bi-chevron-up"></i>
-                            </span>
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-              
-                    <!-- Footer text -->
-                    <p class="text-muted small mt-3 mb-0">
-                      Powered by MatrixCare.
-                    </p>
-                    <p class="small mb-0 text-dark">
-                      Revenue breakdown by rate, discount, and care tier available in 
-                      <span class="text-primary fw-semibold">Aline Leasing & Billing</span>.
-                    </p>
-              
-                  </div>
-                </div>
-              </div>
-              
+<div class="col-md-6 col-lg-3">
+  <div class="card shadow h-100 border-0">
+    <div class="card-body d-flex flex-column">
+
+      <!-- Subheading -->
+      <h6 class="text-muted fw-semibold mb-1">Current Occupancy Rate</h6>
+
+      <!-- Main stat with icon link -->
+      <!-- Main stat with icon link + label -->
+<div class="d-flex justify-content-between align-items-start mb-1">
+  <h1 class="display-5 fw-semibold mb-0" style="color: #324c5d">87%</h1>
+  <a href="occupancy-detail.html"
+     class="d-flex align-items-center text-decoration-none ms-2"
+     data-bs-toggle="tooltip"
+     data-bs-placement="left"
+     title="View Occupancy Detail"
+     style="font-size: 0.75rem; margin-top: 0.25rem;">
+    <i class="bi bi-box-arrow-up-right text-primary me-1" style="font-size: 1rem;"></i>
+    <span class="text-primary fw-semibold">Detail</span>
+  </a>
+</div>
+
+
+      <!-- Caption -->
+      <div class="text-success fw-medium small mb-3">
+        <i class="bi bi-arrow-up-short"></i> 2% from last month
+      </div>
+
+      <!-- Sub-stat list -->
+      <div class="bg-light rounded p-2">
+        <ul class="list-unstyled mb-0 small">
+          <li class="d-flex justify-content-between align-items-center py-2">
+            <span><i class="bi bi-house-door-fill text-secondary me-2"></i> Assisted Living</span>
+            <span class="fw-semibold text-dark d-flex align-items-center">
+              89%
+              <span class="ms-2 d-inline-flex align-items-center justify-content-center rounded-circle bg-success text-white" style="width: 24px; height: 24px;">
+                <i class="bi bi-chevron-up"></i>
+              </span>
+            </span>
+          </li>
+          <li class="d-flex justify-content-between align-items-center py-2 border-top">
+            <span><i class="bi bi-person-check-fill text-secondary me-2"></i> Independent Living</span>
+            <span class="fw-semibold text-dark d-flex align-items-center">
+              83%
+              <span class="ms-2 d-inline-flex align-items-center justify-content-center rounded-circle bg-danger text-white" style="width: 24px; height: 24px;">
+                <i class="bi bi-chevron-down"></i>
+              </span>
+            </span>
+          </li>
+          <li class="d-flex justify-content-between align-items-center py-2 border-top">
+            <span><i class="bi bi-heart-pulse-fill text-secondary me-2"></i> Memory Care</span>
+            <span class="fw-semibold text-dark d-flex align-items-center">
+              88%
+              <span class="ms-2 d-inline-flex align-items-center justify-content-center rounded-circle bg-success text-white" style="width: 24px; height: 24px;">
+                <i class="bi bi-chevron-up"></i>
+              </span>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Footer text -->
+      <p class="text-muted small mt-3 mb-0">
+        Powered by MatrixCare.
+      </p>
+      <p class="small mb-0 text-dark">
+        Revenue breakdown by rate, discount, and care tier available in 
+        <span class="text-primary fw-semibold">Aline Leasing & Billing</span>.
+      </p>
+
+    </div>
+  </div>
+</div>
+
               
                <!-- Projected Move-ins & Move-outs -->
                <div class="col-md-6 col-lg-3">
