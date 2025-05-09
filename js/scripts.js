@@ -352,3 +352,307 @@ function toggleSidebar() {
   
   console.log("Sidebar initialization complete");
 });
+
+// Add this to your scripts.js file (or in a separate file that you include)
+
+// Initialize variables for heatmap
+let heatmapSortField = "community";
+let heatmapSortDirection = "asc";
+
+// Process data to create heatmap data structure
+function processDataForHeatmap(data) {
+  return data.map(community => {
+    // Extract values by month and calculate average
+    const monthValues = {};
+    let sum = 0;
+    
+    community.occupancy.forEach(month => {
+      const monthKey = month.month.toLowerCase();
+      monthValues[monthKey] = month.value;
+      sum += month.value;
+    });
+    
+    // Calculate average if not provided
+    const avg = community.avg || Math.round(sum / community.occupancy.length);
+    
+    return {
+      id: community.id,
+      community: community.community,
+      region: community.region,
+      trend: community.trend,
+      ...monthValues,
+      avg
+    };
+  });
+}
+
+// Generate the heatmap
+function renderHeatmap() {
+  const tableBody = document.querySelector("#occupancyHeatmap tbody");
+  const tableFoot = document.querySelector("#occupancyHeatmap tfoot tr");
+  
+  if (!tableBody || !tableFoot) return;
+  
+  // Clear existing content
+  tableBody.innerHTML = "";
+  
+  // Prepare data
+  const heatmapData = processDataForHeatmap(occupancyData);
+  
+  // Sort the data
+  const sortedData = [...heatmapData].sort((a, b) => {
+    const aValue = a[heatmapSortField];
+    const bValue = b[heatmapSortField];
+    
+    // Handle string or number sorting
+    let comparison;
+    if (typeof aValue === 'string') {
+      comparison = aValue.localeCompare(bValue);
+    } else {
+      comparison = aValue - bValue;
+    }
+    
+    return heatmapSortDirection === "asc" ? comparison : -comparison;
+  });
+  
+  // Update sort indicators in the header
+  document.querySelectorAll("#occupancyHeatmap th.sortable").forEach(header => {
+    const field = header.getAttribute("data-sort");
+    const icon = header.querySelector(".sort-icon");
+    
+    header.classList.toggle("sorted", field === heatmapSortField);
+    if (field === heatmapSortField) {
+      icon.className = `sort-icon ms-1 bi ${heatmapSortDirection === "asc" ? "bi-chevron-up" : "bi-chevron-down"}`;
+    } else {
+      icon.className = "sort-icon ms-1 bi bi-chevron-down";
+    }
+  });
+  
+  // Calculate monthly averages
+  const months = ["jan", "feb", "mar", "apr", "may", "jun"];
+  const monthlyAverages = {};
+  let totalSum = 0;
+  let totalCount = 0;
+  
+  months.forEach(month => {
+    let sum = 0;
+    let count = 0;
+    
+    sortedData.forEach(community => {
+      if (community[month]) {
+        sum += community[month];
+        count++;
+      }
+    });
+    
+    monthlyAverages[month] = count > 0 ? Math.round(sum / count) : 0;
+    totalSum += sum;
+    totalCount += count;
+  });
+  
+  const overallAverage = totalCount > 0 ? Math.round(totalSum / totalCount) : 0;
+  
+  // Add rows to the table
+  sortedData.forEach(community => {
+    const row = document.createElement("tr");
+    
+    // Community name cell
+    row.innerHTML = `<td class="px-3 py-3">${community.community}</td>`;
+    
+    // Month cells
+    months.forEach(month => {
+      const value = community[month] || 0;
+      const colorClass = getHeatmapColorClass(value);
+      
+      const cell = document.createElement("td");
+      cell.className = "p-1";
+      cell.innerHTML = `
+        <div class="heatmap-cell ${colorClass}" 
+             title="${community.community} - ${month.charAt(0).toUpperCase() + month.slice(1)}: ${value}% occupancy">
+          ${value}%
+        </div>
+      `;
+      row.appendChild(cell);
+    });
+    
+    // Average cell
+    const avgCell = document.createElement("td");
+    avgCell.className = "p-1";
+    avgCell.innerHTML = `
+      <div class="heatmap-cell avg-cell">
+        ${community.avg}%
+      </div>
+    `;
+    row.appendChild(avgCell);
+    
+    tableBody.appendChild(row);
+  });
+  
+  // Update footer with averages
+  let footerHTML = `<td class="px-3 py-3 fw-medium">Average</td>`;
+  
+  months.forEach(month => {
+    const avgValue = monthlyAverages[month];
+    const colorClass = getHeatmapColorClass(avgValue);
+    
+    footerHTML += `
+      <td class="p-1">
+        <div class="heatmap-cell ${colorClass}">
+          ${avgValue}%
+        </div>
+      </td>
+    `;
+  });
+  
+  // Overall average
+  footerHTML += `
+    <td class="p-1">
+      <div class="heatmap-cell avg-cell">
+        ${overallAverage}%
+      </div>
+    </td>
+  `;
+  
+  tableFoot.innerHTML = footerHTML;
+  
+  // Update community count and metrics
+  updateCommunityCount();
+  updateKeyMetrics(sortedData);
+}
+
+// Helper function to get color class based on value
+function getHeatmapColorClass(value) {
+  if (value >= 95) return "heatmap-95";
+  if (value >= 90) return "heatmap-90";
+  if (value >= 85) return "heatmap-85";
+  if (value >= 80) return "heatmap-80";
+  if (value >= 75) return "heatmap-75";
+  return "heatmap-75";
+}
+
+// Handle sorting for heatmap
+function handleHeatmapSort(field) {
+  if (heatmapSortField === field) {
+    heatmapSortDirection = heatmapSortDirection === "asc" ? "desc" : "asc";
+  } else {
+    heatmapSortField = field;
+    heatmapSortDirection = "asc";
+  }
+  
+  renderHeatmap();
+  
+  // Add a highlight effect to the sorted column
+  const columnIndex = getColumnIndexByFieldName(field);
+  if (columnIndex !== -1) {
+    highlightColumn(columnIndex);
+  }
+}
+
+// Helper to get column index by field name
+function getColumnIndexByFieldName(field) {
+  const headers = document.querySelectorAll("#occupancyHeatmap th");
+  for (let i = 0; i < headers.length; i++) {
+    if (headers[i].getAttribute("data-sort") === field) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+// Add highlighting effect to sorted column
+function highlightColumn(columnIndex) {
+  const table = document.getElementById("occupancyHeatmap");
+  const rows = table.querySelectorAll("tr");
+  
+  rows.forEach(row => {
+    const cells = row.querySelectorAll("th, td");
+    if (cells.length > columnIndex) {
+      cells[columnIndex].classList.add("column-highlight");
+      
+      // Remove the class after animation completes
+      setTimeout(() => {
+        cells[columnIndex].classList.remove("column-highlight");
+      }, 1000);
+    }
+  });
+}
+
+// Update key metrics
+function updateKeyMetrics(data) {
+  // Find highest occupancy
+  let highest = { value: 0, community: "", month: "" };
+  let lowest = { value: 100, community: "", month: "" };
+  let bestCommunity = { name: "", avg: 0 };
+  
+  const months = ["jan", "feb", "mar", "apr", "may", "jun"];
+  
+  data.forEach(community => {
+    // Check for best community by average
+    if (community.avg > bestCommunity.avg) {
+      bestCommunity = { name: community.community, avg: community.avg };
+    }
+    
+    // Check each month for highest/lowest
+    months.forEach(month => {
+      if (community[month]) {
+        // Check highest
+        if (community[month] > highest.value) {
+          highest = { 
+            value: community[month], 
+            community: community.community, 
+            month: month.charAt(0).toUpperCase() + month.slice(1)
+          };
+        }
+        
+        // Check lowest
+        if (community[month] < lowest.value) {
+          lowest = { 
+            value: community[month], 
+            community: community.community, 
+            month: month.charAt(0).toUpperCase() + month.slice(1)
+          };
+        }
+      }
+    });
+  });
+  
+  // Calculate overall average
+  let totalSum = 0;
+  let totalCount = 0;
+  
+  data.forEach(community => {
+    totalSum += community.avg;
+    totalCount++;
+  });
+  
+  const overallAverage = totalCount > 0 ? Math.round(totalSum / totalCount) : 0;
+  
+  // Update UI elements
+  document.getElementById("highestOccupancy").textContent = `${highest.value}%`;
+  document.getElementById("highestOccupancyDetail").textContent = `${highest.community} (${highest.month})`;
+  
+  document.getElementById("lowestOccupancy").textContent = `${lowest.value}%`;
+  document.getElementById("lowestOccupancyDetail").textContent = `${lowest.community} (${lowest.month})`;
+  
+  document.getElementById("bestPerforming").textContent = `${bestCommunity.avg}%`;
+  document.getElementById("bestPerformingCommunity").textContent = bestCommunity.name;
+  
+  document.getElementById("avgOccupancy").textContent = `${overallAverage}%`;
+}
+
+// Initialize heatmap when document is ready
+document.addEventListener("DOMContentLoaded", function() {
+  // Only initialize if the heatmap table exists
+  if (document.getElementById("occupancyHeatmap")) {
+    // Set up sorting event listeners
+    document.querySelectorAll("#occupancyHeatmap th.sortable").forEach(header => {
+      header.addEventListener("click", function() {
+        const field = this.getAttribute("data-sort");
+        handleHeatmapSort(field);
+      });
+    });
+    
+    // Render initial heatmap
+    renderHeatmap();
+  }
+});

@@ -8,44 +8,44 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="css/detail.css" />
     <style>
-      /* Clean sidebar toggle styling */
-      #sidebar {
-        transition: all 0.3s ease;
-        width: 16.6667%; /* col-lg-2 width */
-        position: sticky;
-        top: 0;
-        height: 100vh;
-        overflow-y: auto;
-      }
+        /* Clean sidebar toggle styling */
+#sidebar {
+  transition: all 0.3s ease;
+  width: 16.6667%; /* col-lg-2 width */
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
 
-      #sidebar.collapsed {
-        margin-left: 0;
-        width: 0;
-        padding: 0;
-        overflow: hidden;
-      }
+#sidebar.collapsed {
+  margin-left: 0;
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+}
 
-      main {
-        transition: width 0.3s ease;
-      }
+main {
+  transition: width 0.3s ease;
+}
 
-      main.expanded {
-        width: 100%;
-      }
+main.expanded {
+  width: 100%;
+}
 
-      #sidebar-toggle {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: transparent;
-        border: none;
-        color: white;
-        font-size: 1.25rem;
-        padding: 0;
-        margin-right: 0.75rem;
-        z-index: 1000;
-        position: relative;
-      }
+#sidebar-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  padding: 0;
+  margin-right: 0.75rem;
+  z-index: 1000;
+  position: relative;
+}
     </style>
   </head>
   <body>
@@ -155,174 +155,173 @@
 
             <!-- Sticky bottom banner -->
             <div class="p-3">
+              <div class="alert  small sidebar-bottom-banner mb-0 text-white">
+                <a href="index.html" class="back-link">← Back to dashboard</a>
+              </div>
             </div>
           </div>
         </aside>
 
-        <!-- Main Content - UPDATED to col-lg-10 -->
+        <!-- Main Content -->
         <main class="col-md-9 col-lg-10 px-4 pt-2">
-          <div class="alert small sidebar-bottom-banner mb-0 text-white">
-            <a href="index.html" class="back-link">← Back to dashboard</a>
-          </div>
+       
           <h2 class="px-3">Occupancy detail</h2>
 
-          <!-- UPDATED: Reorganized row structure for proper column alignment -->
+          <!-- THIS IS THE KEY PART - Row with table and chart side by side -->
           <div class="row g-4 px-3">
-            <!-- Table Section - 8 columns out of the nested row -->
-            <div class="col-lg-8">
-              <!-- Key Metrics Row -->
-              <div class="row g-4 mb-4">
-                <div class="col-md-3">
-                  <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body p-3">
-                      <h6 class="text-muted fw-medium mb-2 small">Highest Occupancy</h6>
-                      <div class="d-flex align-items-center">
-                        <div class="display-6 fw-bold me-2" style="color: #406177;" id="highestOccupancy">98%</div>
-                      </div>
-                      <p class="text-muted small mb-0" id="highestOccupancyDetail">Serenity Gardens (May)</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="col-md-3">
-                  <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body p-3">
-                      <h6 class="text-muted fw-medium mb-2 small">Lowest Occupancy</h6>
-                      <div class="d-flex align-items-center">
-                        <div class="display-6 fw-bold me-2" style="color: rgba(64, 97, 119, 0.4);" id="lowestOccupancy">79%</div>
-                      </div>
-                      <p class="text-muted small mb-0" id="lowestOccupancyDetail">Mountain View (Jun)</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="col-md-3">
-                  <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body p-3">
-                      <h6 class="text-muted fw-medium mb-2 small">Best Performing</h6>
-                      <div class="d-flex align-items-center">
-                        <div class="display-6 fw-bold me-2" style="color: #406177;" id="bestPerforming">98%</div>
-                      </div>
-                      <p class="text-muted small mb-0" id="bestPerformingCommunity">Serenity Gardens</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="col-md-3">
-                  <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body p-3">
-                      <h6 class="text-muted fw-medium mb-2 small">Average Occupancy</h6>
-                      <div class="d-flex align-items-center">
-                        <div class="display-6 fw-bold me-2" style="color: rgba(64, 97, 119, 0.7);" id="avgOccupancy">90%</div>
-                      </div>
-                      <p class="text-muted small mb-0">Across all communities</p>
-                    </div>
-                  </div>
-                </div>
+            <!-- Table Section - 8 columns -->
+            <!-- Replace the existing table with this -->
+<div class="occupancy-dashboard rounded-lg shadow overflow-hidden bg-white mb-4">
+    <!-- Table Header -->
+    <div class="d-flex justify-content-between items-center p-3 bg-light">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-info-circle text-muted me-2"></i>
+        <span class="text-muted small">Hover over cells to see detailed information</span>
+      </div>
+      
+      <!-- Legend -->
+      <div class="d-flex gap-4">
+        <div class="d-flex align-items-center">
+          <div class="rounded me-1" style="height: 12px; width: 32px; background-color: rgba(64, 97, 119, 0.25)"></div>
+          <span class="text-muted small">75%</span>
+        </div>
+        <div class="d-flex align-items-center">
+          <div class="rounded me-1" style="height: 12px; width: 32px; background-color: rgba(64, 97, 119, 0.4)"></div>
+          <span class="text-muted small">80%</span>
+        </div>
+        <div class="d-flex align-items-center">
+          <div class="rounded me-1" style="height: 12px; width: 32px; background-color: rgba(64, 97, 119, 0.55)"></div>
+          <span class="text-muted small">85%</span>
+        </div>
+        <div class="d-flex align-items-center">
+          <div class="rounded me-1" style="height: 12px; width: 32px; background-color: rgba(64, 97, 119, 0.7)"></div>
+          <span class="text-muted small">90%</span>
+        </div>
+        <div class="d-flex align-items-center">
+          <div class="rounded me-1" style="height: 12px; width: 32px; background-color: rgba(64, 97, 119, 0.9)"></div>
+          <span class="text-muted small">95%+</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Heatmap Table -->
+    <div class="table-responsive">
+      <table class="table table-bordered mb-0" id="occupancyHeatmap">
+        <thead class="bg-light">
+          <tr>
+            <th class="sortable px-3 py-3" data-sort="community">
+              <div class="d-flex align-items-center">
+                Community <i class="sort-icon ms-1 bi bi-chevron-up"></i>
               </div>
-                
-              <!-- The Heatmap Table -->  
-              <div class="occupancy-dashboard rounded-lg shadow overflow-hidden bg-white mb-4">
-                <!-- Table Header -->
-                <div class="d-flex justify-content-between items-center p-3 bg-light">
-                  <div class="d-flex align-items-center">
-                    <i class="bi bi-info-circle text-muted me-2"></i>
-                    <span class="text-muted small">Hover over cells to see detailed information</span>
-                  </div>
-                  
-                  <!-- Legend -->
-                  <div class="d-flex gap-4">
-                    <div class="d-flex align-items-center">
-                      <div class="rounded me-1" style="height: 12px; width: 32px; background-color: rgba(64, 97, 119, 0.25)"></div>
-                      <span class="text-muted small">75%</span>
-                    </div>
-                    <div class="d-flex align-items-center">
-                      <div class="rounded me-1" style="height: 12px; width: 32px; background-color: rgba(64, 97, 119, 0.4)"></div>
-                      <span class="text-muted small">80%</span>
-                    </div>
-                    <div class="d-flex align-items-center">
-                      <div class="rounded me-1" style="height: 12px; width: 32px; background-color: rgba(64, 97, 119, 0.55)"></div>
-                      <span class="text-muted small">85%</span>
-                    </div>
-                    <div class="d-flex align-items-center">
-                      <div class="rounded me-1" style="height: 12px; width: 32px; background-color: rgba(64, 97, 119, 0.7)"></div>
-                      <span class="text-muted small">90%</span>
-                    </div>
-                    <div class="d-flex align-items-center">
-                      <div class="rounded me-1" style="height: 12px; width: 32px; background-color: rgba(64, 97, 119, 0.9)"></div>
-                      <span class="text-muted small">95%+</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- Heatmap Table -->
-                <div class="table-responsive">
-                  <table class="table table-bordered mb-0" id="occupancyHeatmap">
-                    <thead class="bg-light">
-                      <tr>
-                        <th class="sortable px-3 py-3" data-sort="community">
-                          <div class="d-flex align-items-center">
-                            Community <i class="sort-icon ms-1 bi bi-chevron-up"></i>
-                          </div>
-                        </th>
-                        <th class="sortable px-3 py-3" data-sort="jan">
-                          <div class="d-flex align-items-center justify-content-center">
-                            Jan <i class="sort-icon ms-1 bi bi-chevron-down"></i>
-                          </div>
-                        </th>
-                        <th class="sortable px-3 py-3" data-sort="feb">
-                          <div class="d-flex align-items-center justify-content-center">
-                            Feb <i class="sort-icon ms-1 bi bi-chevron-down"></i>
-                          </div>
-                        </th>
-                        <th class="sortable px-3 py-3" data-sort="mar">
-                          <div class="d-flex align-items-center justify-content-center">
-                            Mar <i class="sort-icon ms-1 bi bi-chevron-down"></i>
-                          </div>
-                        </th>
-                        <th class="sortable px-3 py-3" data-sort="apr">
-                          <div class="d-flex align-items-center justify-content-center">
-                            Apr <i class="sort-icon ms-1 bi bi-chevron-down"></i>
-                          </div>
-                        </th>
-                        <th class="sortable px-3 py-3" data-sort="may">
-                          <div class="d-flex align-items-center justify-content-center">
-                            May <i class="sort-icon ms-1 bi bi-chevron-down"></i>
-                          </div>
-                        </th>
-                        <th class="sortable px-3 py-3" data-sort="jun">
-                          <div class="d-flex align-items-center justify-content-center">
-                            Jun <i class="sort-icon ms-1 bi bi-chevron-down"></i>
-                          </div>
-                        </th>
-                        <th class="sortable px-3 py-3" data-sort="avg">
-                          <div class="d-flex align-items-center justify-content-center">
-                            Avg <i class="sort-icon ms-1 bi bi-chevron-down"></i>
-                          </div>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- Table rows will be populated by JavaScript -->
-                    </tbody>
-                    <tfoot>
-                      <tr class="bg-light">
-                        <td class="px-3 py-3 fw-medium">Average</td>
-                        <!-- Average values will be filled by JavaScript -->
-                      </tr>
-                    </tfoot>
-                  </table>
-                </div>
-                
-                <!-- Footer Section -->
-                <div class="dashboard-footer p-3 bg-light border-top d-flex justify-content-between">
-                  <span class="text-muted small">Showing <span id="communityCount">0</span> communities</span>
-                  <span class="text-muted small">Updated May 2025</span>
-                </div>
+            </th>
+            <th class="sortable px-3 py-3" data-sort="jan">
+              <div class="d-flex align-items-center justify-content-center">
+                Jan <i class="sort-icon ms-1 bi bi-chevron-down"></i>
               </div>
-            </div>
+            </th>
+            <th class="sortable px-3 py-3" data-sort="feb">
+              <div class="d-flex align-items-center justify-content-center">
+                Feb <i class="sort-icon ms-1 bi bi-chevron-down"></i>
+              </div>
+            </th>
+            <th class="sortable px-3 py-3" data-sort="mar">
+              <div class="d-flex align-items-center justify-content-center">
+                Mar <i class="sort-icon ms-1 bi bi-chevron-down"></i>
+              </div>
+            </th>
+            <th class="sortable px-3 py-3" data-sort="apr">
+              <div class="d-flex align-items-center justify-content-center">
+                Apr <i class="sort-icon ms-1 bi bi-chevron-down"></i>
+              </div>
+            </th>
+            <th class="sortable px-3 py-3" data-sort="may">
+              <div class="d-flex align-items-center justify-content-center">
+                May <i class="sort-icon ms-1 bi bi-chevron-down"></i>
+              </div>
+            </th>
+            <th class="sortable px-3 py-3" data-sort="jun">
+              <div class="d-flex align-items-center justify-content-center">
+                Jun <i class="sort-icon ms-1 bi bi-chevron-down"></i>
+              </div>
+            </th>
+            <th class="sortable px-3 py-3" data-sort="avg">
+              <div class="d-flex align-items-center justify-content-center">
+                Avg <i class="sort-icon ms-1 bi bi-chevron-down"></i>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Table rows will be populated by JavaScript -->
+        </tbody>
+        <tfoot>
+          <tr class="bg-light">
+            <td class="px-3 py-3 fw-medium">Average</td>
+            <!-- Average values will be filled by JavaScript -->
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    
+    <!-- Footer Section -->
+    <div class="dashboard-footer p-3 bg-light border-top d-flex justify-content-between">
+      <span class="text-muted small">Showing <span id="communityCount">0</span> communities</span>
+      <span class="text-muted small">Updated May 2025</span>
+    </div>
+  </div>
+  
+  <!-- Key Metrics Row -->
+  <div class="row g-4 mb-4">
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body p-3">
+          <h6 class="text-muted fw-medium mb-2 small">Highest Occupancy</h6>
+          <div class="d-flex align-items-center">
+            <div class="display-6 fw-bold me-2" style="color: #406177;" id="highestOccupancy">98%</div>
+          </div>
+          <p class="text-muted small mb-0" id="highestOccupancyDetail">Serenity Gardens (May)</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body p-3">
+          <h6 class="text-muted fw-medium mb-2 small">Lowest Occupancy</h6>
+          <div class="d-flex align-items-center">
+            <div class="display-6 fw-bold me-2" style="color: rgba(64, 97, 119, 0.4);" id="lowestOccupancy">79%</div>
+          </div>
+          <p class="text-muted small mb-0" id="lowestOccupancyDetail">Mountain View (Jun)</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body p-3">
+          <h6 class="text-muted fw-medium mb-2 small">Best Performing</h6>
+          <div class="d-flex align-items-center">
+            <div class="display-6 fw-bold me-2" style="color: #406177;" id="bestPerforming">98%</div>
+          </div>
+          <p class="text-muted small mb-0" id="bestPerformingCommunity">Serenity Gardens</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body p-3">
+          <h6 class="text-muted fw-medium mb-2 small">Average Occupancy</h6>
+          <div class="d-flex align-items-center">
+            <div class="display-6 fw-bold me-2" style="color: rgba(64, 97, 119, 0.7);" id="avgOccupancy">90%</div>
+          </div>
+          <p class="text-muted small mb-0">Across all communities</p>
+        </div>
+      </div>
+    </div>
+  </div>
             
-            <!-- Chart Section - 4 columns out of the nested row -->
+            <!-- Chart Section - 4 columns -->
             <div class="col-lg-4">
               <div class="card h-100 border-0 p-3">
                 <!-- KPI and Trend Line Combo -->
