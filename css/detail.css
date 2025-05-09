@@ -680,3 +680,234 @@ main.expanded {
 #occupancyHeatmap td:first-child {
   min-width: 150px;
 }
+
+/* Add these styles to your detail.css file */
+
+/* Funnel visualization styles */
+.funnel-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.funnel-step {
+  margin-bottom: 5px;
+}
+
+.funnel-arrow {
+  font-size: 0.75rem;
+  color: #adb5bd;
+}
+
+/* Exit reasons pie chart */
+.exit-reasons-chart {
+  position: relative;
+}
+
+.exit-reasons-chart canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Move in/out mini bar chart */
+.mini-bar-chart {
+  display: flex;
+  align-items: flex-end;
+  height: 20px;
+  padding: 0 5px;
+}
+
+.mini-bar {
+  width: 3px;
+  margin: 0 1px;
+  border-radius: 1px 1px 0 0;
+}
+
+.mini-bar-in {
+  background-color: #10b981;
+}
+
+.mini-bar-out {
+  background-color: #ef4444;
+}
+
+/* Better spacing for summary cards */
+.card .display-6 {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.card h5 {
+  font-size: 1rem;
+}
+
+/* Improved toggle buttons */
+.btn-group .btn-outline-secondary {
+  border-color: #dee2e6;
+  color: #495057;
+}
+
+.btn-group .btn-outline-secondary:hover,
+.btn-group .btn-check:checked + .btn-outline-secondary {
+  background-color: #406177;
+  border-color: #406177;
+  color: white;
+}
+
+/* Refined dashboard card styles */
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Section headers */
+.card-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.card-header h5 {
+  font-size: 1.05rem;
+  color: #324c5d;
+}
+
+/* Make the tooltip more visible */
+.tooltip-inner {
+  max-width: 200px;
+  padding: 0.5rem;
+  color: #fff;
+  text-align: center;
+  background-color: #324c5d;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced waitlist badge */
+.waitlist-badge {
+  background-color: #dceaf2;
+  color: #406177;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  font-size: 0.75rem;
+}
+
+/* Additional heat map styles */
+#occupancyHeatmap td[data-moveInOut] {
+  padding: 0.25rem;
+  vertical-align: middle;
+}
+
+.pie-chart-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.pie-chart-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Better design for view mode toggles */
+.view-mode-toggle {
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  padding: 3px;
+}
+
+.view-mode-toggle .btn {
+  border-radius: 3px;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+}
+
+/* Financial opportunity section */
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.text-success {
+  color: #198754 !important;
+}
+
+/* Empty states */
+.empty-state {
+  padding: 2rem;
+  text-align: center;
+  color: #6c757d;
+}
+
+.empty-state i {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Move in/out visualization */
+.move-inout-container {
+  display: flex;
+  align-items: flex-end;
+  height: 30px;
+  width: 100%;
+  padding: 0 5px;
+}
+
+.move-inout-pair {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  height: 100%;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.move-inout-bar {
+  width: 4px;
+  max-height: 25px;
+  border-radius: 1px 1px 0 0;
+}
+
+.move-in-bar {
+  background-color: rgb(22, 163, 74);
+}
+
+.move-out-bar {
+  background-color: rgb(220, 38, 38);
+}
+
+/* Badge styles */
+.badge.bg-success {
+  background-color: rgba(22, 163, 74, 0.15) !important;
+  color: rgb(22, 163, 74) !important;
+  font-weight: 500;
+}
+
+.badge.bg-primary {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+  color: rgb(37, 99, 235) !important;
+  font-weight: 500;
+}
+
+.badge.bg-light {
+  background-color: rgba(226, 232, 240, 0.6) !important;
+  color: #475569 !important;
+}
+
+/* Gradient for occupancy range */
+.bg-gradient {
+  background: linear-gradient(to right, rgba(64, 97, 119, 0.4), #406177);
+}
