@@ -585,38 +585,45 @@ main.expanded {
   transition: transform 0.15s ease;
   border-radius: 4px;
 }
-
+.heatmap-cell {
+  transition: transform 0.2s ease;
+  text-align: center;
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 0.4rem;
+}
+.heatmap-cell {
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
 .heatmap-cell:hover {
   transform: scale(1.05);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   cursor: default;
 }
 
-/* Color scheme for the heatmap */
-.heatmap-75 {
-  background-color: rgba(64, 97, 119, 0.25);
-  color: #495057;
+.heatmap-70 {
+  background-color: #f9c9b9; /* coral */
+  color: #3b3b3b;
 }
-
 .heatmap-80 {
-  background-color: rgba(64, 97, 119, 0.4);
-  color: #495057;
+  background-color: #ffece5; /* pale peach */
+  color: #3b3b3b;
 }
-
 .heatmap-85 {
-  background-color: rgba(64, 97, 119, 0.55);
-  color: #fff;
+  background-color: #edf0f4; /* light cool gray */
+  color: #324c5d;
 }
-
 .heatmap-90 {
-  background-color: rgba(64, 97, 119, 0.7);
+  background-color: #bdd4e4; /* muted blue */
+  color: #324c5d;
+}
+.heatmap-95 {
+  background-color: #5b7b94; /* dark blue */
   color: #fff;
 }
 
-.heatmap-95 {
-  background-color: rgba(64, 97, 119, 0.9);
-  color: #fff;
-}
+
 
 /* Avg column styling */
 .avg-cell {
@@ -910,4 +917,67 @@ main.expanded {
 /* Gradient for occupancy range */
 .bg-gradient {
   background: linear-gradient(to right, rgba(64, 97, 119, 0.4), #406177);
+}
+
+.daterangepicker {
+  border-radius: 8px !important;
+  border: 1px solid #e0e0e0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  padding: 12px;
+  color: #333;
+  background-color: white;
+  width: auto;
+  min-width: 280px;
+}
+
+.daterangepicker .calendar-table {
+  border: none;
+  width: 100%;
+}
+
+.daterangepicker td, .daterangepicker th {
+  padding: 6px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+}
+
+.daterangepicker td.active,
+.daterangepicker td.active:hover,
+.daterangepicker td.start-date,
+.daterangepicker td.end-date {
+  background-color: #406177 !important;
+  color: #fff !important;
+}
+
+.daterangepicker td.in-range {
+  background-color: rgba(64, 97, 119, 0.1) !important;
+}
+
+.daterangepicker .ranges {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.daterangepicker .ranges li {
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: #444;
+  background-color: #f9f9f9;
+  transition: background-color 0.2s ease;
+}
+
+.daterangepicker .ranges li.active {
+  background-color: #406177;
+  color: white;
+}
+
+.daterangepicker .drp-buttons {
+  display: none; /* hide the footer buttons entirely */
+}
+canvas {
+  display: block;
+  margin: 0 auto;
 }

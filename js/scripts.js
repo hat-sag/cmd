@@ -1,3 +1,11 @@
+
+const sparklineCharts = {};
+function destroyExistingSparkline(id) {
+  if (sparklineCharts[id]) {
+    sparklineCharts[id].destroy();
+    delete sparklineCharts[id];
+  }
+}
 /*!
 * Start Bootstrap - Bare v5.0.9 (https://startbootstrap.com/template/bare)
 * Copyright 2013-2023 Start Bootstrap
@@ -527,8 +535,9 @@ function getHeatmapColorClass(value) {
   if (value >= 85) return "heatmap-85";
   if (value >= 80) return "heatmap-80";
   if (value >= 75) return "heatmap-75";
-  return "heatmap-75";
+  return "heatmap-70";
 }
+
 
 // Handle sorting for heatmap
 function handleHeatmapSort(field) {
@@ -679,7 +688,7 @@ const enhancedOccupancyData = [
       { month: "Mar", total: 120, occupied: 109, vacant: 11 },
       { month: "Apr", total: 120, occupied: 112, vacant: 8 },
       { month: "May", total: 120, occupied: 115, vacant: 5 },
-      { month: "Jun", total: 120, occupied: 118, vacant: 2 }
+      { month: "Jun", total: 100, occupied: 85, vacant: 15 }
     ],
     unitTypes: {
       studio: { total: 40, occupied: 38 },
@@ -996,7 +1005,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
   document.getElementById('exitReasonsCommunitySelect').addEventListener('change', function() {
     selectedExitReasonsCommunityId = this.value;
-    updateExitReasons();
+    initExitReasonsPieChart();
   });
   
   document.getElementById('financialOpportunityCommunitySelect').addEventListener('change', function() {
@@ -1162,32 +1171,73 @@ function renderHeatmap() {
     });
     
     // Move In/Out cell
-    const moveInOutCell = document.createElement("td");
-    moveInOutCell.className = "p-1";
-    moveInOutCell.setAttribute("data-moveInOut", "true");
-    
-    // Create mini bar chart for move-in/out
-    const maxValue = Math.max(...community.moveInOut.moveIns, ...community.moveInOut.moveOuts);
-    let miniBarChart = '<div class="move-inout-container">';
-    
-    months.forEach((month, i) => {
-      const moveInHeight = Math.max(5, (community.moveInOut.moveIns[i] / maxValue) * 20);
-      const moveOutHeight = Math.max(5, (community.moveInOut.moveOuts[i] / maxValue) * 20);
-      
-      miniBarChart += `
-        <div class="move-inout-pair">
-          <div class="move-inout-bar move-in-bar" style="height: ${moveInHeight}px;"
-               title="${month} Move-ins: ${community.moveInOut.moveIns[i]}"></div>
-          <div class="move-inout-bar move-out-bar" style="height: ${moveOutHeight}px;"
-               title="${month} Move-outs: ${community.moveInOut.moveOuts[i]}"></div>
-        </div>
-      `;
+// Move In/Out cell with Sparkline
+const moveInOutCell = document.createElement("td");
+moveInOutCell.className = "p-1";
+const canvasId = `sparkline-${community.id}`;
+moveInOutCell.innerHTML = `
+  <canvas id="${canvasId}" width="120" height="36"></canvas>
+`;
+row.appendChild(moveInOutCell);
+
+// Draw Chart.js sparkline
+setTimeout(() => {
+  const ctx = document.getElementById(canvasId);
+  if (ctx) {
+    destroyExistingSparkline(canvasId);
+    sparklineCharts[canvasId] = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: months.map(m => m.charAt(0).toUpperCase() + m.slice(1)),
+        datasets: [
+          {
+            label: 'Move-Ins',
+            data: community.moveInOut.moveIns,
+            borderColor: '#a0b878',
+            backgroundColor: 'transparent',
+            tension: 0.3,
+            pointRadius: 0,
+            borderWidth: 2
+          },
+          {
+            label: 'Move-Outs',
+            data: community.moveInOut.moveOuts,
+            borderColor: '#f79a80',
+            backgroundColor: 'transparent',
+            tension: 0.3,
+            pointRadius: 0,
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        responsive: false,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+            backgroundColor: '#fff',
+            titleColor: '#000',
+            bodyColor: '#000',
+            borderColor: '#ccc',
+            borderWidth: 1
+          }
+        },
+        scales: {
+          x: {
+            display: false
+          },
+          y: {
+            display: false
+          }
+        }
+      }
     });
-    
-    miniBarChart += '</div>';
-    moveInOutCell.innerHTML = miniBarChart;
-    row.appendChild(moveInOutCell);
-    
+  }
+}, 10); // ensure DOM is ready
+
     // Waitlist cell
     const waitlistCell = document.createElement("td");
     waitlistCell.className = "p-2 text-center";
@@ -1318,3 +1368,76 @@ function processDataForHeatmap(data) {
 }
 
 // Update the admission funnel section
+let exitReasonsChart = null;
+
+function initExitReasonsPieChart() {
+  const canvas = document.getElementById('exitReasonsPie');
+  if (!canvas) {
+    console.warn("exitReasonsPie canvas not found");
+    return;
+  }
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    console.warn("Canvas context could not be initialized");
+    return;
+  }
+
+  // Get the selected community’s data
+  const selected = selectedExitReasonsCommunityId;
+  const data = selected === 'all'
+    ? aggregateExitReasons(enhancedOccupancyData)
+    : enhancedOccupancyData.find(c => c.id.toString() === selected)?.exitReasons;
+
+  if (!data) {
+    console.warn("No exit reason data found");
+    return;
+  }
+
+  // Destroy the old chart if it exists
+  if (exitReasonsChart) {
+    exitReasonsChart.destroy();
+  }
+
+  // Create a new chart
+  exitReasonsChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ['Death', 'Higher Acuity', 'Dissatisfaction', 'Other'],
+      datasets: [{
+        data: [data.death, data.higherAcuity, data.dissatisfaction, data.other],
+        backgroundColor: ['#ef4444', '#f97316', '#f59e0b', '#6b7280'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return `${context.label}: ${context.parsed} exits`;
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+
+// Add this too if using "All Communities" to sum up
+function aggregateExitReasons(data) {
+  return data.reduce((acc, community) => {
+    acc.death += community.exitReasons.death;
+    acc.higherAcuity += community.exitReasons.higherAcuity;
+    acc.dissatisfaction += community.exitReasons.dissatisfaction;
+    acc.other += community.exitReasons.other;
+    return acc;
+  }, { death: 0, higherAcuity: 0, dissatisfaction: 0, other: 0 });
+}
+
+
+function updateAdmissionFunnel() {
+  console.warn("updateAdmissionFunnel() is not implemented yet.");
+}
