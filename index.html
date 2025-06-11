@@ -135,6 +135,17 @@
   border-left: 4px solid #406177;
   color: #324c5d;
 }
+.btn-orange {
+  background-color: #f7943e;
+  color: white;
+  border: none;
+}
+
+.btn-orange:hover {
+  background-color: #e38027;
+  color: white;
+}
+
 
 
       </style>
@@ -149,6 +160,8 @@
    <div class="collapse navbar-collapse">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
          <!-- Portfolio-level filtering for investor view -->
+       
+
          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Portfolios</a>
             <ul class="dropdown-menu">
@@ -169,6 +182,19 @@
          </li>
       </ul>
       <div class="d-flex align-items-center">
+<!-- Performance Tables Dropdown Button -->
+<div class="dropdown me-3">
+  <button class="btn btn-sm fw-semibold dropdown-toggle d-flex align-items-center bg-light text-dark border" type="button" id="performanceDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-table me-2 text-muted"></i> Performance Tables
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="performanceDropdown">
+    <li><a class="dropdown-item" href="occupancy-detail.html"><i class="bi bi-bar-chart-fill me-2 text-muted"></i> Occupancy Grid</a></li>
+    <!-- Future additions -->
+  </ul>
+</div>
+
+
+
          <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User Icon" width="24" height="24" class="rounded-circle">
       </div>
    </div>

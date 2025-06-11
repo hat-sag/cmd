@@ -18,7 +18,7 @@
 
 <!-- Date Range Picker JS -->
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
+    <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/detail.css" />
     <style>
       /* Clean sidebar toggle styling */
@@ -63,98 +63,130 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-custom shadow-sm px-3 py-2 sticky-top">
-      <div class="d-flex align-items-center gap-3 w-100">
-        <!-- Hamburger + Logo -->
-        <button class="btn p-0 me-2 d-inline-flex align-items-center justify-content-center" id="sidebar-toggle" title="Toggle Sidebar" style="background: none; border: none; color: white;">
-          <i class="bi bi-list fs-4"></i>
-        </button>
-        
-        <img src="assets/aline-primary-logo-white-RGB.png" height="24" alt="Logo" />
-        <span class="fw-semibold text-white small">Aline Analytics</span>
+ <nav class="navbar navbar-custom shadow-sm px-3 py-2 sticky-top">
+  <div class="d-flex align-items-center gap-3 w-100">
 
-        <!-- Spacer -->
-        <div class="flex-grow-1"></div>
+    <!-- Sidebar Toggle + Logo -->
+    <button class="btn p-0 me-2 d-inline-flex align-items-center justify-content-center" id="sidebar-toggle" title="Toggle Sidebar" style="background: none; border: none; color: white;">
+      <i class="bi bi-list fs-4"></i>
+    </button>
+    <img src="assets/aline-primary-logo-white-RGB.png" height="24" alt="Logo" />
+    <span class="fw-semibold text-white small">Aline OpenHub</span>
 
-        <!-- Nav links -->
-        <ul class="nav gap-3 mb-0">
-          <li class="nav-item"><a href="#" class="nav-link text-white small">Communities</a></li>
-          <li class="nav-item"><a href="#" class="nav-link text-white small">Applications</a></li>
+    <div class="flex-grow-1"></div>
+
+    <!-- Updated Nav Items -->
+    <ul class="nav gap-3 mb-0">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white small" href="#" role="button" data-bs-toggle="dropdown">Portfolios</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">All Operators</a></li>
+          <li><a class="dropdown-item" href="#">Operator A</a></li>
+          <li><a class="dropdown-item" href="#">Operator B</a></li>
         </ul>
+      </li>
 
-        <!-- User icon -->
-        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User" height="24" class="rounded-circle" />
-      </div>
-    </nav>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white small" href="#" role="button" data-bs-toggle="dropdown">Application Type</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Leasing & Billing</a></li>
+          <li><a class="dropdown-item" href="#">Care Management</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Performance Tables CTA -->
+
+    <!-- User Icon -->
+    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User" height="24" class="rounded-circle" />
+  </div>
+</nav>
+
 
     <div class="container-fluid">
       <div class="row">
         <!-- Sidebar -->
-        <aside class="col-md-3 col-lg-2 p-0 bg-light border-end" id="sidebar">
-          <div class="d-flex flex-column" style="height: calc(100vh - 56px);">
-            <!-- Filters -->
-            <div class="flex-grow-1 overflow-auto p-3 px-4">
-              <!-- Date Picker -->
-             <div class="mb-4">
-  <label for="dateRangePicker" class="form-label small text-muted">Select Date Range</label>
-  <input type="text" class="form-control form-control-sm" id="dateRangePicker" />
-</div>
+       <aside class="col-md-3 col-lg-2 p-0 bg-light border-end" id="sidebar">
+  <div class="d-flex flex-column" style="height: calc(100vh - 56px);">
+    
+    <!-- Filters -->
+    <div class="flex-grow-1 overflow-auto p-3 px-4">
+      
+      <!-- Operator Selector -->
+      <div class="mb-3">
+        <label for="operatorSelect" class="form-label small text-muted">Operator</label>
+        <select class="form-select form-select-sm" id="operatorSelect">
+          <option selected>All Operators</option>
+          <option>Silverwood Group</option>
+          <option>Harmony Living</option>
+          <option>ClearPath Senior</option>
+        </select>
+      </div>
 
+      <!-- Property Selector -->
+      <div class="mb-3">
+        <label for="communitySelect" class="form-label small text-muted">Property</label>
+        <select class="form-select form-select-sm" id="communitySelect">
+          <option selected>All Properties</option>
+          <option>Lakeview</option>
+          <option>Willow Ridge</option>
+          <option>Maple Grove</option>
+        </select>
+      </div>
 
+      <!-- Care Type -->
+      <div class="mb-3">
+        <label for="careTypeSelect" class="form-label small text-muted">Care Type</label>
+        <select class="form-select form-select-sm" id="careTypeSelect">
+          <option selected>All Levels</option>
+          <option>Independent Living</option>
+          <option>Assisted Living</option>
+          <option>Memory Care</option>
+          <option>Skilled Nursing</option>
+        </select>
+      </div>
 
-              <!-- Community -->
-              <div class="mb-3">
-                <label for="communitySelect" class="form-label small text-muted">Community</label>
-                <select class="form-select form-select-sm" id="communitySelect">
-                  <option selected>All Communities</option>
-                  <option>Lakeview</option>
-                  <option>Willow Ridge</option>
-                  <option>Maple Grove</option>
-                </select>
-              </div>
+      <!-- Room Type -->
+      <div class="mb-3">
+        <label for="roomTypeSelect" class="form-label small text-muted">Room Type</label>
+        <select class="form-select form-select-sm" id="roomTypeSelect">
+          <option selected>All Types</option>
+          <option>Studio</option>
+          <option>1 Bedroom</option>
+          <option>2 Bedroom</option>
+          <option>Shared</option>
+        </select>
+      </div>
 
-              <!-- Care Type -->
-              <div class="mb-3">
-                <label for="careTypeSelect" class="form-label small text-muted">Care Type</label>
-                <select class="form-select form-select-sm" id="careTypeSelect">
-                  <option selected>All Levels</option>
-                  <option>Independent Living</option>
-                  <option>Assisted Living</option>
-                  <option>Memory Care</option>
-                  <option>Skilled Nursing</option>
-                </select>
-              </div>
+      <!-- Payor Type -->
+      <div class="mb-3">
+        <label for="payorSelect" class="form-label small text-muted">Payor Type</label>
+        <select class="form-select form-select-sm" id="payorSelect">
+          <option selected>All</option>
+          <option>Private Pay</option>
+          <option>Medicaid</option>
+          <option>Medicare</option>
+          <option>Veterans</option>
+        </select>
+      </div>
 
-              <!-- Room Type -->
-              <div class="mb-3">
-                <label for="roomTypeSelect" class="form-label small text-muted">Room Type</label>
-                <select class="form-select form-select-sm" id="roomTypeSelect">
-                  <option selected>All Types</option>
-                  <option>Studio</option>
-                  <option>1 Bedroom</option>
-                  <option>2 Bedroom</option>
-                  <option>Shared</option>
-                </select>
-              </div>
+      <!-- Date Range Picker -->
+      <div class="mb-4">
+        <label for="dateRangePicker" class="form-label small text-muted">Select Date Range</label>
+        <input type="text" class="form-control form-control-sm" id="dateRangePicker" />
+      </div>
+    </div>
 
-              <!-- Payor Type -->
-              <div class="mb-3">
-                <label for="payorSelect" class="form-label small text-muted">Payor Type</label>
-                <select class="form-select form-select-sm" id="payorSelect">
-                  <option selected>All</option>
-                  <option>Private Pay</option>
-                  <option>Medicaid</option>
-                  <option>Medicare</option>
-                  <option>Veterans</option>
-                </select>
-              </div>
-            </div>
+    <!-- Sticky CTA at bottom -->
+    <div class="p-3">
+      <div class="alert alert-info small sidebar-bottom-banner mb-0">
+        Compare properties by operator in <strong>Performance Tables</strong>.
+      </div>
+    </div>
 
-            <!-- Sticky bottom banner -->
-            <div class="p-3">
-            </div>
-          </div>
-        </aside>
+  </div>
+</aside>
+
 
         <!-- Main Content - UPDATED to col-lg-10 -->
         <main class="col-md-9 col-lg-10 px-4 pt-2">
@@ -264,7 +296,7 @@
       <div class="card-body p-0" id="driversPanel">
         <div class="row g-0">
           <!-- Admission Funnel Section -->
-          <div class="col-md-6 p-4 border-end">
+          <div class="col-md-4 p-4 border-end">
             <h6 class="text-muted mb-3">Admission Funnel</h6>
             
             <!-- Community Selector -->
@@ -355,85 +387,8 @@
           </div>
           
           <!-- Exit Reasons / Churn Section -->
-          <div class="col-md-6 p-4">
-            <h6 class="text-muted mb-3">Exit Reasons & Churn</h6>
-            
-            <!-- Community Selector -->
-            <div class="mb-3">
-              <select class="form-select form-select-sm" id="exitReasonsCommunitySelect">
-                <option value="all" selected>All Communities</option>
-                <option value="1">Lakeview</option>
-                <option value="2">Willow Ridge</option>
-                <option value="3">Maple Grove</option>
-                <option value="4">Harbor View</option>
-                <option value="5">Mountain View</option>
-                <option value="6">Serenity Gardens</option>
-              </select>
-            </div>
-            
-            <div class="row mt-4">
-              <!-- Pie Chart for Exit Reasons -->
-              <div class="col-6 d-flex justify-content-center">
-                <div class="exit-reasons-chart position-relative" style="width: 150px; height: 150px;">
-                <canvas id="exitReasonsPie" width="150" height="150"></canvas>
-
-                  <div class="position-absolute top-50 start-50 translate-middle text-center">
-                    <span class="d-block fs-5 fw-bold" id="totalExits">127</span>
-                    <span class="small text-muted">Total Exits</span>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Exit Reasons Legend -->
-              <div class="col-6">
-                <div class="exit-reasons-legend">
-                  <div class="d-flex align-items-center mb-2">
-                    <div class="legend-color me-2" style="width: 12px; height: 12px; background-color: #ef4444; border-radius: 2px;"></div>
-                    <span class="small text-muted">Death</span>
-                    <span class="ms-auto small fw-medium" id="deathPercent">32%</span>
-                  </div>
-                  <div class="d-flex align-items-center mb-2">
-                    <div class="legend-color me-2" style="width: 12px; height: 12px; background-color: #f97316; border-radius: 2px;"></div>
-                    <span class="small text-muted">Higher Acuity</span>
-                    <span class="ms-auto small fw-medium" id="acuityPercent">38%</span>
-                  </div>
-                  <div class="d-flex align-items-center mb-2">
-                    <div class="legend-color me-2" style="width: 12px; height: 12px; background-color: #f59e0b; border-radius: 2px;"></div>
-                    <span class="small text-muted">Dissatisfaction</span>
-                    <span class="ms-auto small fw-medium" id="dissatisfactionPercent">16%</span>
-                  </div>
-                  <div class="d-flex align-items-center">
-                    <div class="legend-color me-2" style="width: 12px; height: 12px; background-color: #6b7280; border-radius: 2px;"></div>
-                    <span class="small text-muted">Other</span>
-                    <span class="ms-auto small fw-medium" id="otherPercent">14%</span>
-                  </div>
-                </div>
-                <div class="mt-3 text-center">
-                  <h6 class="mb-0 fw-bold" id="avgLOS">30</h6>
-                  <span class="small text-muted">Avg. Length of Stay (months)</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Add Section 4: Strategic Opportunities View (collapsible) -->
-<div class="row mt-2">
-  <div class="col-lg-12">
-    <div class="card border-0 shadow-sm mb-4">
-      <div class="card-header bg-light d-flex justify-content-between align-items-center py-3">
-        <h5 class="mb-0 fw-semibold">Strategic Opportunities</h5>
-        <button class="btn btn-sm btn-outline-secondary" id="toggleOpportunitiesBtn">
-          <i class="bi bi-chevron-down"></i>
-        </button>
-      </div>
-      <div class="card-body p-0" id="opportunitiesPanel" style="display: none;">
-        <div class="row g-0">
-          <div class="col-md-6 p-4 border-end">
+   
+          <div class="col-md-4 p-4 border-end">
             <h6 class="text-muted mb-3">Available Capacity by Unit Type</h6>
             
             <!-- Unit Type Breakdown -->
@@ -484,7 +439,7 @@
             </div>
           </div>
           
-          <div class="col-md-6 p-4">
+          <div class="col-md-4 p-4">
             <h6 class="text-muted mb-3">Financial Opportunity</h6>
             
             <!-- Community Selector -->
@@ -502,7 +457,7 @@
             
             <!-- Financial Metrics -->
             <div class="row mt-4">
-              <div class="col-md-6 mb-4">
+              <div class="col-md-4 mb-4">
                 <div class="card border-0 bg-light h-100">
                   <div class="card-body p-3 text-center">
                     <h3 class="mb-1 fw-bold text-success" id="potentialRevenue">$202,500</h3>
@@ -558,6 +513,9 @@
     </div>
   </div>
 </div>
+
+<!-- Add Section 4: Strategic Opportunities View (collapsible) -->
+
         </main>
       </div>
     </div>
