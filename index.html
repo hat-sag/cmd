@@ -142,74 +142,96 @@
    <body >
     
       <!-- Responsive navbar -->
-      <nav class="navbar navbar-expand-lg navbar-custom px-5">
-         <a class="navbar-brand d-flex align-items-center" href="#">
-         <img src="assets\aline-primary-logo-white-RGB.png" alt="Aline Logo" id="logoSrc">
-         </a>
-         <div class="collapse navbar-collapse">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-               <li class="nav-item">
-                  <a class="nav-link" href="#">Communities</a>
-               </li>
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Applications</a>
-                  <ul class="dropdown-menu">
-                     <li><a class="dropdown-item" href="#">App 1</a></li>
-                     <li><a class="dropdown-item" href="#">App 2</a></li>
-                  </ul>
-               </li>
+<nav class="navbar navbar-expand-lg navbar-custom px-5">
+   <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="assets/aline-primary-logo-white-RGB.png" alt="Aline Logo" id="logoSrc">
+   </a>
+   <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+         <!-- Portfolio-level filtering for investor view -->
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Portfolios</a>
+            <ul class="dropdown-menu">
+               <li><a class="dropdown-item" href="#">All Operators</a></li>
+               <li><a class="dropdown-item" href="#">Operator A</a></li>
+               <li><a class="dropdown-item" href="#">Operator B</a></li>
+               <!-- Add more dynamically as needed -->
             </ul>
-            <div class="d-flex align-items-center">
-               <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User Icon" width="24" height="24" class="rounded-circle">
-            </div>
-         </div>
-      </nav>
+         </li>
+         <!-- Neutral terminology for software solutions -->
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Application Type</a>
+            <ul class="dropdown-menu">
+               <li><a class="dropdown-item" href="#">Leasing and Billing</a></li>
+               <li><a class="dropdown-item" href="#">Care Management</a></li>
+               <!-- Add more modules if needed -->
+            </ul>
+         </li>
+      </ul>
+      <div class="d-flex align-items-center">
+         <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User Icon" width="24" height="24" class="rounded-circle">
+      </div>
+   </div>
+</nav>
+
       <div class="container-fluid">
         <div class="row">
           
-          <!-- SIDEBAR -->
-          <aside class="col-md-3 col-lg-2 bg-light border-end pt-4 position-sticky" id="sidebar" style="top: 0; height: 100vh;">
+ <!-- SIDEBAR -->
+<aside class="col-md-3 col-lg-2 bg-light border-end pt-4 position-sticky" id="sidebar" style="top: 0; height: 100vh;">
+  <div class="px-3">
+    <h6 class="fw-bold text-muted mb-3">Filters</h6>
 
-            <div class="px-3">
-              <h6 class="fw-bold text-muted mb-3">Filters</h6>
-      
-              <!-- Community Selector -->
-              <div class="mb-3">
-                <label for="communitySelect" class="form-label small text-muted">Community</label>
-                <select class="form-select form-select-sm" id="communitySelect">
-                  <option selected>All Communities</option>
-                  <option>RiverView</option>
-                  <option>Sunrise East</option>
-                  <option>Brookfield West</option>
-                </select>
-              </div>
-      
-              <!-- Region Selector -->
-              <div class="mb-3">
-                <label for="regionSelect" class="form-label small text-muted">Region</label>
-                <select class="form-select form-select-sm" id="regionSelect">
-                  <option selected>All Regions</option>
-                  <option>Midwest</option>
-                  <option>South Atlantic</option>
-                </select>
-              </div>
-      
-              <!-- Care Type -->
-              <div class="mb-3">
-                <label for="careSelect" class="form-label small text-muted">Care Type</label>
-                <select class="form-select form-select-sm" id="careSelect">
-                  <option selected>All Types</option>
-                  <option>IL</option>
-                  <option>AL</option>
-                  <option>MC</option>
-                </select>
-              </div>
-              <div class="alert alert-info small sidebar-bottom-banner mt-4">
-                Want to see care and QA metrics here? <strong>Enable Aline Care</strong> to unlock full lifecycle insights.
-              </div>
-            </div>
-          </aside>
-      
+    <!-- Operator Selector -->
+    <div class="mb-3">
+      <label for="operatorSelect" class="form-label small text-muted">Operator</label>
+      <select class="form-select form-select-sm" id="operatorSelect">
+        <option selected>All Operators</option>
+        <option>Silverwood Group</option>
+        <option>Harmony Living</option>
+        <option>ClearPath Senior</option>
+      </select>
+    </div>
+
+    <!-- Property Selector -->
+    <div class="mb-3">
+      <label for="propertySelect" class="form-label small text-muted">Property</label>
+      <select class="form-select form-select-sm" id="propertySelect">
+        <option selected>All Properties</option>
+        <option>RiverView</option>
+        <option>Sunrise East</option>
+        <option>Brookfield West</option>
+      </select>
+    </div>
+
+    <!-- Region Selector -->
+    <div class="mb-3">
+      <label for="regionSelect" class="form-label small text-muted">Region</label>
+      <select class="form-select form-select-sm" id="regionSelect">
+        <option selected>All Regions</option>
+        <option>Midwest</option>
+        <option>South Atlantic</option>
+      </select>
+    </div>
+
+    <!-- Care Type Selector -->
+    <div class="mb-3">
+      <label for="careSelect" class="form-label small text-muted">Care Type</label>
+      <select class="form-select form-select-sm" id="careSelect">
+        <option selected>All Types</option>
+        <option>IL</option>
+        <option>AL</option>
+        <option>MC</option>
+      </select>
+    </div>
+
+    <!-- Aline Care CTA -->
+    <div class="alert alert-info small sidebar-bottom-banner mt-4">
+      Want deeper clinical + financial visibility? <strong>Enable Aline Care</strong> to unlock full operator performance insights.
+    </div>
+  </div>
+</aside>
+
           <!-- MAIN CONTENT -->
           <main class="col-md-12 col-lg-10 pt-4">
               
@@ -217,7 +239,7 @@
 
      <!-- 🚀 Here’s your metrics dashboard -->
      <div class="col container-fluid py-2 px-1">       
-        <h1 class="mb-4">Aline Performance Center</h1>     
+        <h1 class="mb-4">Aline OpenHub</h1>     
         <p class="text-muted mb-4">
             A centralized view of conversion and revenue performance — with clear paths to expand into care, quality, and financial health as additional data becomes available.
           </p>
@@ -225,130 +247,171 @@
         <!-- 🔁 Lifecycle Sub-Nav (within main content area) -->
 <!-- 🔄 Clean Lifecycle Nav -->
 <div class="d-flex flex-wrap gap-2 mb-4">
-    <button class="btn btn-sm fw-semibold nav-pill">Marketing & Outreach</button>
-    <button class="btn btn-sm fw-semibold nav-pill active-pill">Lead Conversion</button>
-    <button class="btn btn-sm fw-semibold nav-pill active-pill">Revenue and Occupancy</button>
-    <button class="btn btn-sm fw-semibold nav-pill">Financials</button>
-    <button class="btn btn-sm fw-semibold nav-pill disabled-pill" disabled data-bs-toggle="popover"
-  title="Coming Soon"
-  data-bs-content="This section will unlock once Aline Care is enabled for your organization.">
-  Care Delivery
-</button>
+  <button class="btn btn-sm fw-semibold nav-pill">Occupancy & Growth</button>
+  <button class="btn btn-sm fw-semibold nav-pill active-pill">Sales Efficiency</button>
+  <button class="btn btn-sm fw-semibold nav-pill">Revenue Performance</button>
+  <button class="btn btn-sm fw-semibold nav-pill">Financial Benchmarks</button>
+  
+  <!-- Care delivery (requires product enablement) -->
+  <button class="btn btn-sm fw-semibold nav-pill disabled-pill" disabled
+    data-bs-toggle="popover"
+    title="Data Not Enabled"
+    data-bs-content="Care metrics available for portfolios using Aline Care.">
+    Care Insights
+  </button>
 
-    <button class="btn btn-sm fw-semibold nav-pill disabled-pill" disabled>Risk & Acuity</button>
-    <button class="btn btn-sm fw-semibold nav-pill disabled-pill" disabled>Quality</button>
-    <button class="btn btn-sm fw-semibold nav-pill">Resident Outcomes</button>
-  </div>
+  <!-- Risk & Acuity (also disabled) -->
+  <button class="btn btn-sm fw-semibold nav-pill disabled-pill" disabled
+    data-bs-toggle="popover"
+    title="Requires Additional Data"
+    data-bs-content="Enable Aline Care to view acuity trends and care-related risk signals.">
+    Risk & Acuity
+  </button>
+
+  <button class="btn btn-sm fw-semibold nav-pill disabled-pill" disabled
+    data-bs-toggle="popover"
+    title="Requires Clinical Integration"
+    data-bs-content="Quality scores available for enabled communities using Aline QA tools.">
+    Quality Ratings
+  </button>
+
+  <button class="btn btn-sm fw-semibold nav-pill">Resident Outcomes</button>
+</div>
+
   
   
 
-         <div class="container-fluid pt-5 pb-2">
-            <h2 class="mb-3">Revenue Operations</h2>
+         <div class="container-fluid pt-3 pb-2">
+            <h3 class="mb-3">Revenue Operations</h3>
             <div class="row g-4">
 
                <!-- Current Occupancy Rate -->
-               <div class="col-md-6 col-lg-3">
-                <div class="card shadow h-100 border-0">
-                  <div class="card-body d-flex flex-column">
-              
-                    <!-- Subheading -->
-                    <h6 class="text-muted fw-semibold mb-1">Current Occupancy Rate</h6>
-              
-                    <!-- Main stat -->
-                    <div class="d-flex align-items-baseline mb-1">
-                      <h1 class="display-5 fw-semibold mb-0 me-2" style="color: #324c5d">87%</h1>
-                    </div>
-              
-                    <!-- Caption -->
-                    <div class="text-success fw-medium small mb-3">
-                      <i class="bi bi-arrow-up-short"></i> 2% from last month
-                    </div>
-              
-                    <!-- Sub-stat list -->
-                    <div class="bg-light rounded p-2">
-                      <ul class="list-unstyled mb-0 small">
-                        <li class="d-flex justify-content-between align-items-center py-2">
-                          <span><i class="bi bi-house-door-fill text-secondary me-2"></i> Assisted Living</span>
-                          <span class="fw-semibold text-dark d-flex align-items-center">
-                            89%
-                            <span class="ms-2 d-inline-flex align-items-center justify-content-center rounded-circle bg-success text-white" style="width: 24px; height: 24px;">
-                              <i class="bi bi-chevron-up"></i>
-                            </span>
-                          </span>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center py-2 border-top">
-                          <span><i class="bi bi-person-check-fill text-secondary me-2"></i> Independent Living</span>
-                          <span class="fw-semibold text-dark d-flex align-items-center">
-                            83%
-                            <span class="ms-2 d-inline-flex align-items-center justify-content-center rounded-circle bg-danger text-white" style="width: 24px; height: 24px;">
-                              <i class="bi bi-chevron-down"></i>
-                            </span>
-                          </span>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center py-2 border-top">
-                          <span><i class="bi bi-heart-pulse-fill text-secondary me-2"></i> Memory Care</span>
-                          <span class="fw-semibold text-dark d-flex align-items-center">
-                            88%
-                            <span class="ms-2 d-inline-flex align-items-center justify-content-center rounded-circle bg-success text-white" style="width: 24px; height: 24px;">
-                              <i class="bi bi-chevron-up"></i>
-                            </span>
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-              
-                    <!-- Footer text -->
-                    <p class="text-muted small mt-3 mb-0">
-                      Powered by MatrixCare.
-                    </p>
-                    <p class="small mb-0 text-dark">
-                      Revenue breakdown by rate, discount, and care tier available in 
-                      <span class="text-primary fw-semibold">Aline Leasing & Billing</span>.
-                    </p>
-              
-                  </div>
-                </div>
-              </div>
+               <!-- Current Occupancy Rate -->
+<div class="col-md-6 col-lg-3">
+  <div class="card shadow h-100 border-0">
+    <div class="card-body d-flex flex-column">
+
+      <!-- Subheading -->
+      <h6 class="text-muted fw-semibold mb-1">Current Occupancy Rate</h6>
+
+      <!-- Main stat -->
+      <div class="d-flex align-items-baseline mb-1">
+        <h1 class="display-5 fw-semibold mb-0 me-2" style="color: #324c5d">87%</h1>
+      </div>
+
+      <!-- Caption -->
+      <div class="text-success fw-medium small mb-3">
+        <i class="bi bi-arrow-up-short"></i> 2% from last month
+      </div>
+
+      <!-- Sub-stat list -->
+      <div class="bg-light rounded p-2">
+        <ul class="list-unstyled mb-0 small">
+          <li class="d-flex justify-content-between align-items-center py-2">
+            <span><i class="bi bi-house-door-fill text-secondary me-2"></i> Assisted Living</span>
+            <span class="fw-semibold text-dark d-flex align-items-center">
+              89%
+              <span class="ms-2 d-inline-flex align-items-center justify-content-center rounded-circle bg-success text-white" style="width: 24px; height: 24px;">
+                <i class="bi bi-chevron-up"></i>
+              </span>
+            </span>
+          </li>
+          <li class="d-flex justify-content-between align-items-center py-2 border-top">
+            <span><i class="bi bi-person-check-fill text-secondary me-2"></i> Independent Living</span>
+            <span class="fw-semibold text-dark d-flex align-items-center">
+              83%
+              <span class="ms-2 d-inline-flex align-items-center justify-content-center rounded-circle bg-danger text-white" style="width: 24px; height: 24px;">
+                <i class="bi bi-chevron-down"></i>
+              </span>
+            </span>
+          </li>
+          <li class="d-flex justify-content-between align-items-center py-2 border-top">
+            <span><i class="bi bi-heart-pulse-fill text-secondary me-2"></i> Memory Care</span>
+            <span class="fw-semibold text-dark d-flex align-items-center">
+              88%
+              <span class="ms-2 d-inline-flex align-items-center justify-content-center rounded-circle bg-success text-white" style="width: 24px; height: 24px;">
+                <i class="bi bi-chevron-up"></i>
+              </span>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Footer text -->
+      <p class="text-muted small mt-3 mb-0">
+        Sourced via <strong>MatrixCare</strong> across enabled operators.
+      </p>
+      <p class="small mb-0 text-dark">
+        Enable Aline’s billing platform for full visibility into unit-level occupancy and rate stratification.
+      </p>
+
+    </div>
+  </div>
+</div>
+
               
               
                <!-- Projected Move-ins & Move-outs -->
-               <div class="col-md-6 col-lg-3">
-                  <div class="card shadow h-100 border-0">
-                     <div class="card-body d-flex flex-column">
-                        <!-- Subheading -->
-                        <h6 class="text-muted fw-semibold mb-1">Net Occupancy Impact</h6>
-                        <!-- Main stat -->
-                        <div class="d-flex align-items-baseline mb-1">
-                           <h1 class="display-5 fw-semibold mb-0 me-2 text-success">+12</h1>
-                        </div>
-                        <!-- Caption -->
-                        <div class="text-muted fw-medium small mb-3">
-                           Projected over next 30 days
-                        </div>
-                        <!-- Bar indicator -->
-                        <div class="progress mb-4" style="height: 12px; background-color: #f0f0f0;">
-                           <div class="progress-bar bg-danger" style="width: 39%"></div>
-                           <div class="progress-bar bg-success" style="width: 61%"></div>
-                        </div>
-                        <!-- Combined labels and values -->
-                        <ul class="list-unstyled mb-0 small">
-                           <li class="d-flex justify-content-between align-items-center py-2 fs-6">
-                              <span class="d-flex align-items-center text-danger">
-                              <i class="bi bi-arrow-right-circle-fill me-2"></i> Move-outs
-                              </span>
-                              <span class="fw-semibold text-danger fs-6">22</span>
-                           </li>
-                           <li class="d-flex justify-content-between align-items-center py-2 border-top fs-6">
-                              <span class="d-flex align-items-center text-success">
-                              <i class="bi bi-arrow-left-circle-fill me-2"></i> Move-ins
-                              </span>
-                              <span class="fw-semibold text-success">34</span>
-                           </li>
-                        </ul>
-                        <!-- Footer text -->
-                     </div>
-                  </div>
-               </div>
+             <!-- Projected Move-ins & Move-outs -->
+<!-- Net Occupancy Impact -->
+<div class="col-md-6 col-lg-3">
+  <div class="card shadow h-100 border-0">
+    <div class="card-body d-flex flex-column">
+
+      <!-- Subheading -->
+      <h6 class="text-muted fw-semibold mb-1">Net Occupancy Impact</h6>
+
+      <!-- Main stat -->
+      <div class="d-flex align-items-baseline mb-1">
+        <h1 class="display-5 fw-semibold mb-0 me-2 text-success">+12</h1>
+      </div>
+
+      <!-- Caption -->
+      <div class="text-muted fw-medium small mb-3">
+        Forecasted next 30 days
+      </div>
+
+      <!-- Bar indicator -->
+      <div class="progress mb-4" style="height: 12px; background-color: #f0f0f0;">
+        <div class="progress-bar bg-danger" style="width: 39%"></div>
+        <div class="progress-bar bg-success" style="width: 61%"></div>
+      </div>
+
+      <!-- Move-in/out breakdown -->
+      <ul class="list-unstyled mb-0 small">
+        <li class="d-flex justify-content-between align-items-center py-2 fs-6">
+          <span class="d-flex align-items-center text-danger">
+            <i class="bi bi-arrow-right-circle-fill me-2"></i> Move-outs
+          </span>
+          <span class="fw-semibold text-danger fs-6">22</span>
+        </li>
+        <li class="d-flex justify-content-between align-items-center py-2 border-top fs-6">
+          <span class="d-flex align-items-center text-success">
+            <i class="bi bi-arrow-left-circle-fill me-2"></i> Move-ins
+          </span>
+          <span class="fw-semibold text-success">34</span>
+        </li>
+      </ul>
+
+      <!-- Year-over-Year inline comparison -->
+      <div class="bg-light rounded p-2 mt-3">
+        <ul class="list-unstyled small mb-0">
+          <li class="d-flex justify-content-between py-1">
+            <span><i class="bi bi-calendar-week text-muted me-2"></i> This Month</span>
+            <span class="fw-semibold text-success">+12</span>
+          </li>
+          <li class="d-flex justify-content-between py-1 border-top">
+            <span><i class="bi bi-clock-history text-muted me-2"></i> Same Month Last Year</span>
+            <span class="fw-semibold text-muted">+4</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
                <!-- Monthly Recurring Revenue -->
                <div class="col-md-6 col-lg-3">
                   <div class="card shadow h-100 border-0">
@@ -364,57 +427,72 @@
                         </div>
                         <!-- Sparkline -->
                         <!-- MRR Sparkline -->
-                        <div class="bg-light rounded px-2 pt-2 pb-3 mb-3 position-relative" style="height: 140px;">
+                        <div class="bg-light rounded px-2 pt-2 pb-3 mb-3 position-relative" style="height: 220px;">
                            <canvas id="mrrSparkline" class="w-100 h-100"></canvas>
                            <span class="position-absolute bottom-0 start-0 text-muted small ms-2 mb-2">
                            MRR grew 16.7% with slight fluctuation
                            </span>
                         </div>
+    
                         <!-- Revenue Metrics Summary -->
                      </div>
                   </div>
                </div>
                <!-- Average Rent Concession -->
-               <div class="col-md-6 col-lg-3">
-                  <div class="card shadow h-100 border-0">
-                     <div class="card-body d-flex flex-column">
-                        <!-- Subheading -->
-                        <h6 class="text-muted fw-semibold mb-1">Rent Concessions – Last 30 Days</h6>
-                        <!-- Main Value -->
-                        <div class="d-flex align-items-baseline mb-1">
-                           <h1 class="display-5 fw-semibold mb-0 me-2 text-danger">$42,750</h1>
-                           <span class="badge bg-danger bg-opacity-25 text-danger">
-                           <i class="bi bi-arrow-up"></i> +112%
-                           </span>
-                        </div>
-                        <!-- Caption -->
-                        <div class="text-muted small mb-3">+ $4.5K vs last month</div>
-                        <!-- Breakdown List (Styled like others) -->
-                        <div class="bg-light rounded p-2 mb-2">
-                           <ul class="list-unstyled small mb-0">
-                              <li class="d-flex justify-content-between align-items-center py-2">
-                                 <span><i class="bi bi-cash-stack text-secondary me-2"></i> Total Concessions</span>
-                                 <span class="fw-semibold text-dark">$542,750</span>
-                              </li>
-                              <li class="d-flex justify-content-between align-items-center py-2 border-top">
-                                 <span><i class="bi bi-building text-secondary me-2"></i> Units with Concessions</span>
-                                 <span class="fw-semibold text-dark">18 <span class="text-muted">(34%)</span></span>
-                              </li>
-                              <li class="d-flex justify-content-between align-items-center py-2 border-top">
-                                 <span><i class="bi bi-percent text-secondary me-2"></i> Avg Concession/Unit</span>
-                                 <span class="fw-semibold text-dark">$2,375</span>
-                              </li>
-                           </ul>
-                        </div>
-                        <!-- Footer (optional) -->
-                     </div>
-                  </div>
-               </div>
+    <!-- Average Rent Concession -->
+<div class="col-md-6 col-lg-3">
+  <div class="card shadow h-100 border-0">
+    <div class="card-body d-flex flex-column">
+
+      <!-- Subheading -->
+      <h6 class="text-muted fw-semibold mb-1">Rent Concessions – Last 30 Days</h6>
+
+      <!-- Main Value -->
+      <div class="d-flex align-items-baseline mb-1">
+        <h1 class="display-5 fw-semibold mb-0 me-2 text-danger">$42,750</h1>
+        <span class="badge bg-danger bg-opacity-25 text-danger">
+          <i class="bi bi-arrow-up"></i> +112%
+        </span>
+      </div>
+
+      <!-- Caption -->
+      <div class="text-muted small mb-3">+ $4.5K vs last month</div>
+
+      <!-- Breakdown List -->
+      <div class="bg-light rounded p-2 mb-2">
+        <ul class="list-unstyled small mb-0">
+          <li class="d-flex justify-content-between align-items-center py-2">
+            <span><i class="bi bi-cash-stack text-secondary me-2"></i> Total Concessions</span>
+            <span class="fw-semibold text-dark">$542,750</span>
+          </li>
+          <li class="d-flex justify-content-between align-items-center py-2 border-top">
+            <span><i class="bi bi-building text-secondary me-2"></i> Units with Concessions</span>
+            <span class="fw-semibold text-dark">18 <span class="text-muted">(34%)</span></span>
+          </li>
+          <li class="d-flex justify-content-between align-items-center py-2 border-top">
+            <span><i class="bi bi-percent text-secondary me-2"></i> Avg Concession/Unit</span>
+            <span class="fw-semibold text-dark">$2,375</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Footer -->
+      <p class="text-muted small mt-3 mb-0">
+        Financial data powered by <strong>Sage Financials</strong>.
+      </p>
+      <p class="small mb-0 text-dark">
+        Aline Billing unlocks visibility into waiver impact, concession types, and margin recovery by property.
+      </p>
+
+    </div>
+  </div>
+</div>
+
             </div>
          </div>
          <div class="container-fluid py-5">
             <!-- Section Title and Subtitle -->
-            <h2 class="mb-3">Sales Funnel</h2>
+            <h3 class="mb-3">Sales Funnel</h3>
             <p class="text-muted mb-4">Pipeline health and marketing effectiveness across touchpoints.</p>
           
             <!-- Row of Cards -->
@@ -521,7 +599,7 @@
           </li>
         
         <!-- Histogram Placeholder -->
-        <div class="bg-light rounded px-2 pt-2 pb-3 mb-3 position-relative" style="height: 140px;">
+        <div class="bg-light rounded px-2 pt-2 pb-3 mb-3 position-relative" style="height: 200px;">
           <canvas id="moveInTimeChart" class="w-100 h-100"></canvas>
         
         </div>
@@ -595,7 +673,7 @@
         <div class="text-muted small mb-3">↑ 5% vs last month</div>
   
         <!-- Bar Chart Placeholder -->
-        <div class="bg-light rounded px-2 pt-2 pb-3 mb-3 position-relative" style="height: 140px;">
+        <div class="bg-light rounded px-2 pt-2 pb-3 mb-3 position-relative" style="height: 200px;">
           <canvas id="lostRateChart" class="w-100 h-100"></canvas>
 
         </div>
